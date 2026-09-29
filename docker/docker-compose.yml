@@ -1,0 +1,103 @@
+name: giop-lab
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: gua-lab-postgres-001
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?Set POSTGRES_DB in .env}
+      POSTGRES_USER: ${POSTGRES_USER:?Set POSTGRES_USER in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      TZ: ${TZ:-America/Sao_Paulo}
+    volumes:
+      - zabbix-postgres-data:/var/lib/postgresql/data
+    networks: [giop-lab-monitor]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  zabbix-server:
+    image: zabbix/zabbix-server-pgsql:alpine-7.0-latest
+    container_name: gua-lab-zabbix-server-001
+    restart: unless-stopped
+    environment:
+      DB_SERVER_HOST: postgres
+      POSTGRES_DB: ${POSTGRES_DB:?Set POSTGRES_DB in .env}
+      POSTGRES_USER: ${POSTGRES_USER:?Set POSTGRES_USER in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      ZBX_TIMEOUT: 10
+      TZ: ${TZ:-America/Sao_Paulo}
+    depends_on:
+      postgres: {condition: service_healthy}
+    networks: [giop-lab-monitor, giop-lab-workload]
+
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
+    container_name: gua-lab-zabbix-web-001
+    restart: unless-stopped
+    environment:
+      ZBX_SERVER_HOST: zabbix-server
+      DB_SERVER_HOST: postgres
+      POSTGRES_DB: ${POSTGRES_DB:?Set POSTGRES_DB in .env}
+      POSTGRES_USER: ${POSTGRES_USER:?Set POSTGRES_USER in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      PHP_TZ: ${TZ:-America/Sao_Paulo}
+    depends_on:
+      postgres: {condition: service_healthy}
+      zabbix-server: {condition: service_started}
+    ports: ["${ZABBIX_FRONTEND_PORT:-8080}:8080"]
+    networks: [giop-lab-monitor, giop-lab-frontend]
+
+  zabbix-agent2:
+    image: zabbix/zabbix-agent2:alpine-7.0-latest
+    container_name: gua-lab-agent-001
+    restart: unless-stopped
+    environment:
+      ZBX_HOSTNAME: GUA-LAB-AGENT-001
+      ZBX_SERVER_HOST: zabbix-server
+      ZBX_SERVER_ACTIVE: zabbix-server
+      TZ: ${TZ:-America/Sao_Paulo}
+    volumes:
+      - ../docker/zabbix-agent2.conf:/etc/zabbix/zabbix_agentd.d/lab.conf:ro
+    depends_on:
+      zabbix-server: {condition: service_started}
+      web-workload: {condition: service_healthy}
+    networks: [giop-lab-monitor, giop-lab-workload]
+
+  web-workload:
+    image: nginx:1.27-alpine
+    container_name: gua-lab-srv-web-001
+    hostname: GUA-LAB-SRV-WEB-001
+    restart: "no"
+    volumes:
+      - ../docker/nginx-default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks: [giop-lab-workload]
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/healthz || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  zabbix-bootstrap:
+    image: curlimages/curl:8.10.1
+    container_name: gua-lab-zabbix-bootstrap-001
+    restart: "no"
+    environment:
+      ZABBIX_ADMIN_PASSWORD: ${ZABBIX_ADMIN_PASSWORD:?Set ZABBIX_ADMIN_PASSWORD in .env}
+    volumes:
+      - ../scripts/bootstrap-zabbix.sh:/bootstrap-zabbix.sh:ro
+    entrypoint: ["/bin/sh", "/bootstrap-zabbix.sh"]
+    depends_on:
+      zabbix-web: {condition: service_started}
+      zabbix-agent2: {condition: service_started}
+    networks: [giop-lab-monitor]
+
+networks:
+  giop-lab-monitor: {name: giop-lab-monitor, driver: bridge, internal: true}
+  giop-lab-workload: {name: giop-lab-workload, driver: bridge, internal: true}
+  giop-lab-frontend: {name: giop-lab-frontend, driver: bridge}
+volumes:
+  zabbix-postgres-data: {name: giop-lab-zabbix-postgres-data}
