@@ -1,0 +1,20 @@
+services:
+  glpi-inventory-agent:
+    build:
+      context: ./glpi-agent
+      args:
+        GLPI_AGENT_VERSION: "1.20"
+    container_name: gua-lab-inventory-agent-001
+    hostname: GUA-LAB-INVENTORY-001
+    environment:
+      GLPI_AGENT_SERVER: http://glpi/
+      GLPI_INVENTORY_OAUTH_CLIENT_ID: ${GLPI_INVENTORY_OAUTH_CLIENT_ID:?Set GLPI_INVENTORY_OAUTH_CLIENT_ID in .env}
+      GLPI_INVENTORY_OAUTH_CLIENT_SECRET: ${GLPI_INVENTORY_OAUTH_CLIENT_SECRET:?Set GLPI_INVENTORY_OAUTH_CLIENT_SECRET in .env}
+    networks:
+      - giop-lab-glpi-frontend
+    restart: "no"
+
+networks:
+  giop-lab-glpi-frontend:
+    external: true
+    name: giop-lab-glpi-frontend

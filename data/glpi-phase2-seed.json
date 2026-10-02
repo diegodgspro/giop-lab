@@ -1,0 +1,16 @@
+{
+  "seed": 20260929,
+  "label": "GIOP-LAB synthetic municipal distribution — not a model of a real municipality",
+  "entity": "GIOP-LAB",
+  "locations": {
+    "central": ["LAB-CPD", "LAB-PACO", "LAB-EDUCATION-HQ"],
+    "secretariat": ["LAB-SECRETARIA-01", "LAB-SECRETARIA-02", "LAB-SECRETARIA-03", "LAB-SECRETARIA-04", "LAB-SECRETARIA-05", "LAB-SECRETARIA-06", "LAB-SECRETARIA-07"],
+    "administrative": ["LAB-UNIDADE-ADM-01", "LAB-UNIDADE-ADM-02", "LAB-UNIDADE-ADM-03", "LAB-UNIDADE-ADM-04", "LAB-UNIDADE-ADM-05", "LAB-UNIDADE-ADM-06"],
+    "school": ["LAB-ESCOLA-01", "LAB-ESCOLA-02", "LAB-ESCOLA-03", "LAB-ESCOLA-04", "LAB-ESCOLA-05", "LAB-ESCOLA-06", "LAB-ESCOLA-07", "LAB-ESCOLA-08", "LAB-ESCOLA-09", "LAB-ESCOLA-10", "LAB-ESCOLA-11", "LAB-ESCOLA-12", "LAB-ESCOLA-13", "LAB-ESCOLA-14", "LAB-ESCOLA-15"],
+    "earlyEducation": ["LAB-CRECHE-EMEI-01", "LAB-CRECHE-EMEI-02", "LAB-CRECHE-EMEI-03", "LAB-CRECHE-EMEI-04", "LAB-CRECHE-EMEI-05", "LAB-CRECHE-EMEI-06", "LAB-CRECHE-EMEI-07", "LAB-CRECHE-EMEI-08"],
+    "remote": ["LAB-REMOTE-SITE-01", "LAB-REMOTE-SITE-02"]
+  },
+  "counts": { "locations": 41, "servers": 11, "workstations": 116, "switches": 15, "accessPoints": 20, "routers": 5, "firewalls": 3, "wanCpe": 8, "tickets": 93 },
+  "ticketCategories": { "Endpoint": 24, "Network": 21, "Server": 16, "Identity": 11, "Backup": 8, "Peripheral": 6, "Application": 7 },
+  "ticketStatuses": { "New": 14, "Processing": 18, "Pending": 7, "Solved": 21, "Closed": 33 }
+}

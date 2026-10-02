@@ -48,7 +48,7 @@ services:
     depends_on:
       postgres: {condition: service_healthy}
       zabbix-server: {condition: service_started}
-    ports: ["${ZABBIX_FRONTEND_PORT:-8080}:8080"]
+    ports: ["127.0.0.1:${ZABBIX_FRONTEND_PORT:-8080}:8080"]
     networks: [giop-lab-monitor, giop-lab-frontend]
 
   zabbix-agent2:
@@ -95,9 +95,55 @@ services:
       zabbix-agent2: {condition: service_started}
     networks: [giop-lab-monitor]
 
+  glpi-db:
+    image: mysql:8.4
+    container_name: gua-lab-glpi-db-001
+    restart: unless-stopped
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: ${GLPI_DB_NAME:?Set GLPI_DB_NAME in .env}
+      MYSQL_USER: ${GLPI_DB_USER:?Set GLPI_DB_USER in .env}
+      MYSQL_PASSWORD: ${GLPI_DB_PASSWORD:?Set GLPI_DB_PASSWORD in .env}
+      TZ: ${TZ:-America/Sao_Paulo}
+    volumes:
+      - glpi-mysql-data:/var/lib/mysql
+    networks: [giop-lab-glpi-db]
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u $$MYSQL_USER -p$$MYSQL_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 18
+
+  glpi:
+    image: glpi/glpi:latest
+    container_name: gua-lab-glpi-001
+    restart: unless-stopped
+    environment:
+      GLPI_DB_HOST: glpi-db
+      GLPI_DB_PORT: 3306
+      GLPI_DB_NAME: ${GLPI_DB_NAME:?Set GLPI_DB_NAME in .env}
+      GLPI_DB_USER: ${GLPI_DB_USER:?Set GLPI_DB_USER in .env}
+      GLPI_DB_PASSWORD: ${GLPI_DB_PASSWORD:?Set GLPI_DB_PASSWORD in .env}
+      TZ: ${TZ:-America/Sao_Paulo}
+    volumes:
+      - glpi-app-data:/var/glpi
+    depends_on:
+      glpi-db: {condition: service_healthy}
+    ports: ["127.0.0.1:${GLPI_FRONTEND_PORT:-8081}:80"]
+    networks: [giop-lab-glpi-db, giop-lab-glpi-frontend]
+    healthcheck:
+      test: ["CMD-SHELL", "php -r 'exit(@fsockopen(\"127.0.0.1\", 80) ? 0 : 1);'"]
+      interval: 15s
+      timeout: 5s
+      retries: 12
+
 networks:
   giop-lab-monitor: {name: giop-lab-monitor, driver: bridge, internal: true}
   giop-lab-workload: {name: giop-lab-workload, driver: bridge, internal: true}
   giop-lab-frontend: {name: giop-lab-frontend, driver: bridge}
+  giop-lab-glpi-db: {name: giop-lab-glpi-db, driver: bridge, internal: true}
+  giop-lab-glpi-frontend: {name: giop-lab-glpi-frontend, driver: bridge}
 volumes:
   zabbix-postgres-data: {name: giop-lab-zabbix-postgres-data}
+  glpi-mysql-data: {name: giop-lab-glpi-mysql-data}
+  glpi-app-data: {name: giop-lab-glpi-app-data}

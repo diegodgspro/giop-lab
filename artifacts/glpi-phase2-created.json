@@ -1,0 +1,2812 @@
+﻿{
+    "TicketItemAssociation":  "Not exposed by the High-Level API schema",
+    "Ticket":  [
+                   {
+                       "id":  1,
+                       "ci":  {
+                                  "name":  "GUA-LAB-SRV-WEB-001",
+                                  "id":  1,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-001",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  2,
+                       "ci":  {
+                                  "name":  "GUA-LAB-SRV-DB-001",
+                                  "id":  2,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-002",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  3,
+                       "ci":  {
+                                  "name":  "GUA-LAB-SRV-FILE-001",
+                                  "id":  3,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-003",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  4,
+                       "ci":  {
+                                  "name":  "GUA-LAB-SRV-DNS-001",
+                                  "id":  4,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-004",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  5,
+                       "ci":  {
+                                  "name":  "GUA-LAB-SRV-AUTH-001",
+                                  "id":  5,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-005",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  6,
+                       "ci":  {
+                                  "name":  "GUA-LAB-SRV-BACKUP-001",
+                                  "id":  6,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-006",
+                       "status":  "New",
+                       "priority":  2
+                   },
+                   {
+                       "id":  7,
+                       "ci":  {
+                                  "name":  "GUA-LAB-SRV-MON-001",
+                                  "id":  7,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-007",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  8,
+                       "ci":  {
+                                  "name":  "GUA-LAB-SRV-ITSM-001",
+                                  "id":  8,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-008",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  9,
+                       "ci":  {
+                                  "name":  "GUA-LAB-SRV-APP-001",
+                                  "id":  9,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-009",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  10,
+                       "ci":  {
+                                  "name":  "GUA-LAB-SRV-MGMT-001",
+                                  "id":  10,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-010",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  11,
+                       "ci":  {
+                                  "name":  "GUA-LAB-SRV-AUTOMATION-001",
+                                  "id":  11,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-011",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  12,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-001",
+                                  "id":  12,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-012",
+                       "status":  "New",
+                       "priority":  2
+                   },
+                   {
+                       "id":  13,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-002",
+                                  "id":  13,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-013",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  14,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-003",
+                                  "id":  14,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  1,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-014",
+                       "status":  "New",
+                       "priority":  3
+                   },
+                   {
+                       "id":  15,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-004",
+                                  "id":  15,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-015",
+                       "status":  "Processing (assigned)",
+                       "priority":  3
+                   },
+                   {
+                       "id":  16,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-005",
+                                  "id":  16,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-016",
+                       "status":  "Processing (assigned)",
+                       "priority":  3
+                   },
+                   {
+                       "id":  17,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-006",
+                                  "id":  17,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-017",
+                       "status":  "Processing (assigned)",
+                       "priority":  3
+                   },
+                   {
+                       "id":  18,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-007",
+                                  "id":  18,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-018",
+                       "status":  "Processing (assigned)",
+                       "priority":  2
+                   },
+                   {
+                       "id":  19,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-008",
+                                  "id":  19,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-019",
+                       "status":  "Processing (assigned)",
+                       "priority":  3
+                   },
+                   {
+                       "id":  20,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-009",
+                                  "id":  20,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-020",
+                       "status":  "Processing (assigned)",
+                       "priority":  3
+                   },
+                   {
+                       "id":  21,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-010",
+                                  "id":  21,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-021",
+                       "status":  "Processing (assigned)",
+                       "priority":  3
+                   },
+                   {
+                       "id":  22,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-011",
+                                  "id":  22,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-022",
+                       "status":  "Processing (assigned)",
+                       "priority":  3
+                   },
+                   {
+                       "id":  23,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-012",
+                                  "id":  23,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-023",
+                       "status":  "Processing (assigned)",
+                       "priority":  3
+                   },
+                   {
+                       "id":  24,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-013",
+                                  "id":  24,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Endpoint",
+                       "name":  "LAB-INCIDENT-024",
+                       "status":  "Processing (assigned)",
+                       "priority":  2
+                   },
+                   {
+                       "id":  25,
+                       "ci":  {
+                                  "name":  "GUA-LAB-AP-010",
+                                  "id":  25,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-025",
+                       "status":  "Processing (assigned)",
+                       "priority":  4
+                   },
+                   {
+                       "id":  26,
+                       "ci":  {
+                                  "name":  "GUA-LAB-AP-011",
+                                  "id":  26,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-026",
+                       "status":  "Processing (assigned)",
+                       "priority":  4
+                   },
+                   {
+                       "id":  27,
+                       "ci":  {
+                                  "name":  "GUA-LAB-AP-012",
+                                  "id":  27,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-027",
+                       "status":  "Processing (assigned)",
+                       "priority":  4
+                   },
+                   {
+                       "id":  28,
+                       "ci":  {
+                                  "name":  "GUA-LAB-AP-013",
+                                  "id":  28,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-028",
+                       "status":  "Processing (assigned)",
+                       "priority":  4
+                   },
+                   {
+                       "id":  29,
+                       "ci":  {
+                                  "name":  "GUA-LAB-AP-014",
+                                  "id":  29,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-029",
+                       "status":  "Processing (assigned)",
+                       "priority":  5
+                   },
+                   {
+                       "id":  30,
+                       "ci":  {
+                                  "name":  "GUA-LAB-AP-015",
+                                  "id":  30,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-030",
+                       "status":  "Processing (assigned)",
+                       "priority":  4
+                   },
+                   {
+                       "id":  31,
+                       "ci":  {
+                                  "name":  "GUA-LAB-AP-016",
+                                  "id":  31,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-031",
+                       "status":  "Processing (assigned)",
+                       "priority":  4
+                   },
+                   {
+                       "id":  32,
+                       "ci":  {
+                                  "name":  "GUA-LAB-AP-017",
+                                  "id":  32,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  2,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-032",
+                       "status":  "Processing (assigned)",
+                       "priority":  4
+                   },
+                   {
+                       "id":  33,
+                       "ci":  {
+                                  "name":  "GUA-LAB-AP-018",
+                                  "id":  33,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  4,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-033",
+                       "status":  "Pending",
+                       "priority":  4
+                   },
+                   {
+                       "id":  34,
+                       "ci":  {
+                                  "name":  "GUA-LAB-AP-019",
+                                  "id":  34,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  4,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-034",
+                       "status":  "Pending",
+                       "priority":  5
+                   },
+                   {
+                       "id":  35,
+                       "ci":  {
+                                  "name":  "GUA-LAB-AP-020",
+                                  "id":  35,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  4,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-035",
+                       "status":  "Pending",
+                       "priority":  4
+                   },
+                   {
+                       "id":  36,
+                       "ci":  {
+                                  "name":  "GUA-LAB-RTR-001",
+                                  "id":  36,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  4,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-036",
+                       "status":  "Pending",
+                       "priority":  4
+                   },
+                   {
+                       "id":  37,
+                       "ci":  {
+                                  "name":  "GUA-LAB-RTR-002",
+                                  "id":  37,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  4,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-037",
+                       "status":  "Pending",
+                       "priority":  4
+                   },
+                   {
+                       "id":  38,
+                       "ci":  {
+                                  "name":  "GUA-LAB-RTR-003",
+                                  "id":  38,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  4,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-038",
+                       "status":  "Pending",
+                       "priority":  4
+                   },
+                   {
+                       "id":  39,
+                       "ci":  {
+                                  "name":  "GUA-LAB-RTR-004",
+                                  "id":  39,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  4,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-039",
+                       "status":  "Pending",
+                       "priority":  5
+                   },
+                   {
+                       "id":  40,
+                       "ci":  {
+                                  "name":  "GUA-LAB-RTR-005",
+                                  "id":  40,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-040",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  41,
+                       "ci":  {
+                                  "name":  "GUA-LAB-FW-001",
+                                  "id":  41,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-041",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  42,
+                       "ci":  {
+                                  "name":  "GUA-LAB-FW-002",
+                                  "id":  42,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-042",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  43,
+                       "ci":  {
+                                  "name":  "GUA-LAB-FW-003",
+                                  "id":  43,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-043",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  44,
+                       "ci":  {
+                                  "name":  "GUA-LAB-CPE-001",
+                                  "id":  44,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-044",
+                       "status":  "Solved",
+                       "priority":  5
+                   },
+                   {
+                       "id":  45,
+                       "ci":  {
+                                  "name":  "GUA-LAB-CPE-002",
+                                  "id":  45,
+                                  "type":  "NetworkEquipment"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Network",
+                       "name":  "LAB-INCIDENT-045",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  46,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-035",
+                                  "id":  46,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-046",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  47,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-036",
+                                  "id":  47,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-047",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  48,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-037",
+                                  "id":  48,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-048",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  49,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-038",
+                                  "id":  49,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-049",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  50,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-039",
+                                  "id":  50,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-050",
+                       "status":  "Solved",
+                       "priority":  5
+                   },
+                   {
+                       "id":  51,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-040",
+                                  "id":  51,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-051",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  52,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-041",
+                                  "id":  52,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-052",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  53,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-042",
+                                  "id":  53,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-053",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  54,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-043",
+                                  "id":  54,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-054",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  55,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-044",
+                                  "id":  55,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-055",
+                       "status":  "Solved",
+                       "priority":  5
+                   },
+                   {
+                       "id":  56,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-045",
+                                  "id":  56,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-056",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  57,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-046",
+                                  "id":  57,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-057",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  58,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-047",
+                                  "id":  58,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-058",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  59,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-048",
+                                  "id":  59,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-059",
+                       "status":  "Solved",
+                       "priority":  4
+                   },
+                   {
+                       "id":  60,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-049",
+                                  "id":  60,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  5,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-060",
+                       "status":  "Solved",
+                       "priority":  5
+                   },
+                   {
+                       "id":  61,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-050",
+                                  "id":  61,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Server",
+                       "name":  "LAB-INCIDENT-061",
+                       "status":  "Closed",
+                       "priority":  4
+                   },
+                   {
+                       "id":  62,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-051",
+                                  "id":  62,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Identity",
+                       "name":  "LAB-INCIDENT-062",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  63,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-052",
+                                  "id":  63,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Identity",
+                       "name":  "LAB-INCIDENT-063",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  64,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-053",
+                                  "id":  64,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Identity",
+                       "name":  "LAB-INCIDENT-064",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  65,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-054",
+                                  "id":  65,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Identity",
+                       "name":  "LAB-INCIDENT-065",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  66,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-055",
+                                  "id":  66,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Identity",
+                       "name":  "LAB-INCIDENT-066",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  67,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-056",
+                                  "id":  67,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Identity",
+                       "name":  "LAB-INCIDENT-067",
+                       "status":  "Closed",
+                       "priority":  2
+                   },
+                   {
+                       "id":  68,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-057",
+                                  "id":  68,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Identity",
+                       "name":  "LAB-INCIDENT-068",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  69,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-058",
+                                  "id":  69,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Identity",
+                       "name":  "LAB-INCIDENT-069",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  70,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-059",
+                                  "id":  70,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Identity",
+                       "name":  "LAB-INCIDENT-070",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  71,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-060",
+                                  "id":  71,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Identity",
+                       "name":  "LAB-INCIDENT-071",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  72,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-061",
+                                  "id":  72,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Identity",
+                       "name":  "LAB-INCIDENT-072",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  73,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-062",
+                                  "id":  73,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Backup",
+                       "name":  "LAB-INCIDENT-073",
+                       "status":  "Closed",
+                       "priority":  4
+                   },
+                   {
+                       "id":  74,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-063",
+                                  "id":  74,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Backup",
+                       "name":  "LAB-INCIDENT-074",
+                       "status":  "Closed",
+                       "priority":  4
+                   },
+                   {
+                       "id":  75,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-064",
+                                  "id":  75,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Backup",
+                       "name":  "LAB-INCIDENT-075",
+                       "status":  "Closed",
+                       "priority":  4
+                   },
+                   {
+                       "id":  76,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-065",
+                                  "id":  76,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Backup",
+                       "name":  "LAB-INCIDENT-076",
+                       "status":  "Closed",
+                       "priority":  4
+                   },
+                   {
+                       "id":  77,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-066",
+                                  "id":  77,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Backup",
+                       "name":  "LAB-INCIDENT-077",
+                       "status":  "Closed",
+                       "priority":  5
+                   },
+                   {
+                       "id":  78,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-067",
+                                  "id":  78,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Backup",
+                       "name":  "LAB-INCIDENT-078",
+                       "status":  "Closed",
+                       "priority":  4
+                   },
+                   {
+                       "id":  79,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-068",
+                                  "id":  79,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Backup",
+                       "name":  "LAB-INCIDENT-079",
+                       "status":  "Closed",
+                       "priority":  4
+                   },
+                   {
+                       "id":  80,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-069",
+                                  "id":  80,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Backup",
+                       "name":  "LAB-INCIDENT-080",
+                       "status":  "Closed",
+                       "priority":  4
+                   },
+                   {
+                       "id":  81,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-070",
+                                  "id":  81,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Peripheral",
+                       "name":  "LAB-INCIDENT-081",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  82,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-071",
+                                  "id":  82,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Peripheral",
+                       "name":  "LAB-INCIDENT-082",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  83,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-072",
+                                  "id":  83,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Peripheral",
+                       "name":  "LAB-INCIDENT-083",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  84,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-073",
+                                  "id":  84,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Peripheral",
+                       "name":  "LAB-INCIDENT-084",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  85,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-074",
+                                  "id":  85,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Peripheral",
+                       "name":  "LAB-INCIDENT-085",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  86,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-075",
+                                  "id":  86,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Peripheral",
+                       "name":  "LAB-INCIDENT-086",
+                       "status":  "Closed",
+                       "priority":  2
+                   },
+                   {
+                       "id":  87,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-076",
+                                  "id":  87,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Application",
+                       "name":  "LAB-INCIDENT-087",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  88,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-077",
+                                  "id":  88,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Application",
+                       "name":  "LAB-INCIDENT-088",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  89,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-078",
+                                  "id":  89,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Application",
+                       "name":  "LAB-INCIDENT-089",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  90,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-079",
+                                  "id":  90,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Application",
+                       "name":  "LAB-INCIDENT-090",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  91,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-080",
+                                  "id":  91,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Application",
+                       "name":  "LAB-INCIDENT-091",
+                       "status":  "Closed",
+                       "priority":  3
+                   },
+                   {
+                       "id":  92,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-081",
+                                  "id":  92,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Application",
+                       "name":  "LAB-INCIDENT-092",
+                       "status":  "Closed",
+                       "priority":  2
+                   },
+                   {
+                       "id":  93,
+                       "ci":  {
+                                  "name":  "GUA-LAB-PC-082",
+                                  "id":  93,
+                                  "type":  "Computer"
+                              },
+                       "action":  "reused",
+                       "statusId":  6,
+                       "category":  "Application",
+                       "name":  "LAB-INCIDENT-093",
+                       "status":  "Closed",
+                       "priority":  3
+                   }
+               ],
+    "Entity":  [
+                   {
+                       "name":  "GIOP-LAB",
+                       "id":  null,
+                       "action":  "not-created-api-403"
+                   }
+               ],
+    "Computer":  [
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-SRV-WEB-001",
+                         "id":  1,
+                         "location":  "LAB-CPD",
+                         "role":  "server"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-SRV-DB-001",
+                         "id":  2,
+                         "location":  "LAB-PACO",
+                         "role":  "server"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-SRV-FILE-001",
+                         "id":  3,
+                         "location":  "LAB-EDUCATION-HQ",
+                         "role":  "server"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-SRV-DNS-001",
+                         "id":  4,
+                         "location":  "LAB-PACO",
+                         "role":  "server"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-SRV-AUTH-001",
+                         "id":  5,
+                         "location":  "LAB-EDUCATION-HQ",
+                         "role":  "server"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-SRV-BACKUP-001",
+                         "id":  6,
+                         "location":  "LAB-CPD",
+                         "role":  "server"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-SRV-MON-001",
+                         "id":  7,
+                         "location":  "LAB-PACO",
+                         "role":  "server"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-SRV-ITSM-001",
+                         "id":  8,
+                         "location":  "LAB-EDUCATION-HQ",
+                         "role":  "server"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-SRV-APP-001",
+                         "id":  9,
+                         "location":  "LAB-PACO",
+                         "role":  "server"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-SRV-MGMT-001",
+                         "id":  10,
+                         "location":  "LAB-EDUCATION-HQ",
+                         "role":  "server"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-SRV-AUTOMATION-001",
+                         "id":  11,
+                         "location":  "LAB-CPD",
+                         "role":  "server"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-001",
+                         "id":  12,
+                         "location":  "LAB-SECRETARIA-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-002",
+                         "id":  13,
+                         "location":  "LAB-UNIDADE-ADM-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-003",
+                         "id":  14,
+                         "location":  "LAB-ESCOLA-04",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-004",
+                         "id":  15,
+                         "location":  "LAB-ESCOLA-11",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-005",
+                         "id":  16,
+                         "location":  "LAB-CRECHE-EMEI-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-006",
+                         "id":  17,
+                         "location":  "LAB-REMOTE-SITE-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-007",
+                         "id":  18,
+                         "location":  "LAB-PACO",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-008",
+                         "id":  19,
+                         "location":  "LAB-SECRETARIA-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-009",
+                         "id":  20,
+                         "location":  "LAB-UNIDADE-ADM-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-010",
+                         "id":  21,
+                         "location":  "LAB-ESCOLA-07",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-011",
+                         "id":  22,
+                         "location":  "LAB-ESCOLA-14",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-012",
+                         "id":  23,
+                         "location":  "LAB-CRECHE-EMEI-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-013",
+                         "id":  24,
+                         "location":  "LAB-EDUCATION-HQ",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-014",
+                         "id":  25,
+                         "location":  "LAB-SECRETARIA-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-015",
+                         "id":  26,
+                         "location":  "LAB-UNIDADE-ADM-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-016",
+                         "id":  27,
+                         "location":  "LAB-ESCOLA-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-017",
+                         "id":  28,
+                         "location":  "LAB-ESCOLA-10",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-018",
+                         "id":  29,
+                         "location":  "LAB-CRECHE-EMEI-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-019",
+                         "id":  30,
+                         "location":  "LAB-REMOTE-SITE-01",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-020",
+                         "id":  31,
+                         "location":  "LAB-CPD",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-021",
+                         "id":  32,
+                         "location":  "LAB-SECRETARIA-05",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-022",
+                         "id":  33,
+                         "location":  "LAB-UNIDADE-ADM-05",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-023",
+                         "id":  34,
+                         "location":  "LAB-ESCOLA-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-024",
+                         "id":  35,
+                         "location":  "LAB-ESCOLA-13",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-025",
+                         "id":  36,
+                         "location":  "LAB-CRECHE-EMEI-05",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-026",
+                         "id":  37,
+                         "location":  "LAB-PACO",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-027",
+                         "id":  38,
+                         "location":  "LAB-SECRETARIA-01",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-028",
+                         "id":  39,
+                         "location":  "LAB-UNIDADE-ADM-01",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-029",
+                         "id":  40,
+                         "location":  "LAB-ESCOLA-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-030",
+                         "id":  41,
+                         "location":  "LAB-ESCOLA-09",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-031",
+                         "id":  42,
+                         "location":  "LAB-CRECHE-EMEI-01",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-032",
+                         "id":  43,
+                         "location":  "LAB-CRECHE-EMEI-08",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-033",
+                         "id":  44,
+                         "location":  "LAB-EDUCATION-HQ",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-034",
+                         "id":  45,
+                         "location":  "LAB-SECRETARIA-04",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-035",
+                         "id":  46,
+                         "location":  "LAB-UNIDADE-ADM-04",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-036",
+                         "id":  47,
+                         "location":  "LAB-ESCOLA-05",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-037",
+                         "id":  48,
+                         "location":  "LAB-ESCOLA-12",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-038",
+                         "id":  49,
+                         "location":  "LAB-CRECHE-EMEI-04",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-039",
+                         "id":  50,
+                         "location":  "LAB-CPD",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-040",
+                         "id":  51,
+                         "location":  "LAB-EDUCATION-HQ",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-041",
+                         "id":  52,
+                         "location":  "LAB-SECRETARIA-07",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-042",
+                         "id":  53,
+                         "location":  "LAB-ESCOLA-01",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-043",
+                         "id":  54,
+                         "location":  "LAB-ESCOLA-08",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-044",
+                         "id":  55,
+                         "location":  "LAB-ESCOLA-15",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-045",
+                         "id":  56,
+                         "location":  "LAB-CRECHE-EMEI-07",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-046",
+                         "id":  57,
+                         "location":  "LAB-PACO",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-047",
+                         "id":  58,
+                         "location":  "LAB-SECRETARIA-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-048",
+                         "id":  59,
+                         "location":  "LAB-UNIDADE-ADM-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-049",
+                         "id":  60,
+                         "location":  "LAB-ESCOLA-04",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-050",
+                         "id":  61,
+                         "location":  "LAB-ESCOLA-11",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-051",
+                         "id":  62,
+                         "location":  "LAB-CRECHE-EMEI-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-052",
+                         "id":  63,
+                         "location":  "LAB-REMOTE-SITE-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-053",
+                         "id":  64,
+                         "location":  "LAB-PACO",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-054",
+                         "id":  65,
+                         "location":  "LAB-SECRETARIA-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-055",
+                         "id":  66,
+                         "location":  "LAB-UNIDADE-ADM-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-056",
+                         "id":  67,
+                         "location":  "LAB-ESCOLA-07",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-057",
+                         "id":  68,
+                         "location":  "LAB-ESCOLA-14",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-058",
+                         "id":  69,
+                         "location":  "LAB-CRECHE-EMEI-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-059",
+                         "id":  70,
+                         "location":  "LAB-EDUCATION-HQ",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-060",
+                         "id":  71,
+                         "location":  "LAB-SECRETARIA-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-061",
+                         "id":  72,
+                         "location":  "LAB-UNIDADE-ADM-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-062",
+                         "id":  73,
+                         "location":  "LAB-ESCOLA-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-063",
+                         "id":  74,
+                         "location":  "LAB-ESCOLA-10",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-064",
+                         "id":  75,
+                         "location":  "LAB-CRECHE-EMEI-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-065",
+                         "id":  76,
+                         "location":  "LAB-REMOTE-SITE-01",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-066",
+                         "id":  77,
+                         "location":  "LAB-CPD",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-067",
+                         "id":  78,
+                         "location":  "LAB-SECRETARIA-05",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-068",
+                         "id":  79,
+                         "location":  "LAB-UNIDADE-ADM-05",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-069",
+                         "id":  80,
+                         "location":  "LAB-ESCOLA-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-070",
+                         "id":  81,
+                         "location":  "LAB-ESCOLA-13",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-071",
+                         "id":  82,
+                         "location":  "LAB-CRECHE-EMEI-05",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-072",
+                         "id":  83,
+                         "location":  "LAB-PACO",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-073",
+                         "id":  84,
+                         "location":  "LAB-SECRETARIA-01",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-074",
+                         "id":  85,
+                         "location":  "LAB-UNIDADE-ADM-01",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-075",
+                         "id":  86,
+                         "location":  "LAB-ESCOLA-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-076",
+                         "id":  87,
+                         "location":  "LAB-ESCOLA-09",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-077",
+                         "id":  88,
+                         "location":  "LAB-CRECHE-EMEI-01",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-078",
+                         "id":  89,
+                         "location":  "LAB-CRECHE-EMEI-08",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-079",
+                         "id":  90,
+                         "location":  "LAB-EDUCATION-HQ",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-080",
+                         "id":  91,
+                         "location":  "LAB-SECRETARIA-04",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-081",
+                         "id":  92,
+                         "location":  "LAB-UNIDADE-ADM-04",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-082",
+                         "id":  93,
+                         "location":  "LAB-ESCOLA-05",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-083",
+                         "id":  94,
+                         "location":  "LAB-ESCOLA-12",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-084",
+                         "id":  95,
+                         "location":  "LAB-CRECHE-EMEI-04",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-085",
+                         "id":  96,
+                         "location":  "LAB-CPD",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-086",
+                         "id":  97,
+                         "location":  "LAB-EDUCATION-HQ",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-087",
+                         "id":  98,
+                         "location":  "LAB-SECRETARIA-07",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-088",
+                         "id":  99,
+                         "location":  "LAB-ESCOLA-01",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-089",
+                         "id":  100,
+                         "location":  "LAB-ESCOLA-08",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-090",
+                         "id":  101,
+                         "location":  "LAB-ESCOLA-15",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-091",
+                         "id":  102,
+                         "location":  "LAB-CRECHE-EMEI-07",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-092",
+                         "id":  103,
+                         "location":  "LAB-PACO",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-093",
+                         "id":  104,
+                         "location":  "LAB-SECRETARIA-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-094",
+                         "id":  105,
+                         "location":  "LAB-UNIDADE-ADM-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-095",
+                         "id":  106,
+                         "location":  "LAB-ESCOLA-04",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-096",
+                         "id":  107,
+                         "location":  "LAB-ESCOLA-11",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-097",
+                         "id":  108,
+                         "location":  "LAB-CRECHE-EMEI-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-098",
+                         "id":  109,
+                         "location":  "LAB-REMOTE-SITE-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-099",
+                         "id":  110,
+                         "location":  "LAB-PACO",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-100",
+                         "id":  111,
+                         "location":  "LAB-SECRETARIA-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-101",
+                         "id":  112,
+                         "location":  "LAB-UNIDADE-ADM-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-102",
+                         "id":  113,
+                         "location":  "LAB-ESCOLA-07",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-103",
+                         "id":  114,
+                         "location":  "LAB-ESCOLA-14",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-104",
+                         "id":  115,
+                         "location":  "LAB-CRECHE-EMEI-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-105",
+                         "id":  116,
+                         "location":  "LAB-EDUCATION-HQ",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-106",
+                         "id":  117,
+                         "location":  "LAB-SECRETARIA-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-107",
+                         "id":  118,
+                         "location":  "LAB-UNIDADE-ADM-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-108",
+                         "id":  119,
+                         "location":  "LAB-ESCOLA-03",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-109",
+                         "id":  120,
+                         "location":  "LAB-ESCOLA-10",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-110",
+                         "id":  121,
+                         "location":  "LAB-CRECHE-EMEI-02",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-111",
+                         "id":  122,
+                         "location":  "LAB-REMOTE-SITE-01",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-112",
+                         "id":  123,
+                         "location":  "LAB-CPD",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-113",
+                         "id":  124,
+                         "location":  "LAB-SECRETARIA-05",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-114",
+                         "id":  125,
+                         "location":  "LAB-UNIDADE-ADM-05",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-115",
+                         "id":  126,
+                         "location":  "LAB-ESCOLA-06",
+                         "role":  "workstation"
+                     },
+                     {
+                         "action":  "reused",
+                         "name":  "GUA-LAB-PC-116",
+                         "id":  127,
+                         "location":  "LAB-ESCOLA-13",
+                         "role":  "workstation"
+                     }
+                 ],
+    "Location":  [
+                     {
+                         "locationClass":  "central",
+                         "name":  "LAB-CPD",
+                         "id":  1,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "central",
+                         "name":  "LAB-PACO",
+                         "id":  2,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "central",
+                         "name":  "LAB-EDUCATION-HQ",
+                         "id":  3,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "secretariat",
+                         "name":  "LAB-SECRETARIA-01",
+                         "id":  4,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "secretariat",
+                         "name":  "LAB-SECRETARIA-02",
+                         "id":  5,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "secretariat",
+                         "name":  "LAB-SECRETARIA-03",
+                         "id":  6,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "secretariat",
+                         "name":  "LAB-SECRETARIA-04",
+                         "id":  7,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "secretariat",
+                         "name":  "LAB-SECRETARIA-05",
+                         "id":  8,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "secretariat",
+                         "name":  "LAB-SECRETARIA-06",
+                         "id":  9,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "secretariat",
+                         "name":  "LAB-SECRETARIA-07",
+                         "id":  10,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "administrative",
+                         "name":  "LAB-UNIDADE-ADM-01",
+                         "id":  11,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "administrative",
+                         "name":  "LAB-UNIDADE-ADM-02",
+                         "id":  12,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "administrative",
+                         "name":  "LAB-UNIDADE-ADM-03",
+                         "id":  13,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "administrative",
+                         "name":  "LAB-UNIDADE-ADM-04",
+                         "id":  14,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "administrative",
+                         "name":  "LAB-UNIDADE-ADM-05",
+                         "id":  15,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "administrative",
+                         "name":  "LAB-UNIDADE-ADM-06",
+                         "id":  16,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-01",
+                         "id":  17,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-02",
+                         "id":  18,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-03",
+                         "id":  19,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-04",
+                         "id":  20,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-05",
+                         "id":  21,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-06",
+                         "id":  22,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-07",
+                         "id":  23,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-08",
+                         "id":  24,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-09",
+                         "id":  25,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-10",
+                         "id":  26,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-11",
+                         "id":  27,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-12",
+                         "id":  28,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-13",
+                         "id":  29,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-14",
+                         "id":  30,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "school",
+                         "name":  "LAB-ESCOLA-15",
+                         "id":  31,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "earlyEducation",
+                         "name":  "LAB-CRECHE-EMEI-01",
+                         "id":  32,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "earlyEducation",
+                         "name":  "LAB-CRECHE-EMEI-02",
+                         "id":  33,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "earlyEducation",
+                         "name":  "LAB-CRECHE-EMEI-03",
+                         "id":  34,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "earlyEducation",
+                         "name":  "LAB-CRECHE-EMEI-04",
+                         "id":  35,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "earlyEducation",
+                         "name":  "LAB-CRECHE-EMEI-05",
+                         "id":  36,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "earlyEducation",
+                         "name":  "LAB-CRECHE-EMEI-06",
+                         "id":  37,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "earlyEducation",
+                         "name":  "LAB-CRECHE-EMEI-07",
+                         "id":  38,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "earlyEducation",
+                         "name":  "LAB-CRECHE-EMEI-08",
+                         "id":  39,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "remote",
+                         "name":  "LAB-REMOTE-SITE-01",
+                         "id":  40,
+                         "action":  "reused"
+                     },
+                     {
+                         "locationClass":  "remote",
+                         "name":  "LAB-REMOTE-SITE-02",
+                         "id":  41,
+                         "action":  "reused"
+                     }
+                 ],
+    "NetworkEquipment":  [
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-001",
+                                 "id":  1,
+                                 "location":  "LAB-CPD",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-002",
+                                 "id":  2,
+                                 "location":  "LAB-SECRETARIA-04",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-003",
+                                 "id":  3,
+                                 "location":  "LAB-UNIDADE-ADM-03",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-004",
+                                 "id":  4,
+                                 "location":  "LAB-ESCOLA-03",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-005",
+                                 "id":  5,
+                                 "location":  "LAB-ESCOLA-09",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-006",
+                                 "id":  6,
+                                 "location":  "LAB-ESCOLA-15",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-007",
+                                 "id":  7,
+                                 "location":  "LAB-CRECHE-EMEI-06",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-008",
+                                 "id":  8,
+                                 "location":  "LAB-PACO",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-009",
+                                 "id":  9,
+                                 "location":  "LAB-EDUCATION-HQ",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-010",
+                                 "id":  10,
+                                 "location":  "LAB-SECRETARIA-06",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-011",
+                                 "id":  11,
+                                 "location":  "LAB-UNIDADE-ADM-05",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-012",
+                                 "id":  12,
+                                 "location":  "LAB-ESCOLA-05",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-013",
+                                 "id":  13,
+                                 "location":  "LAB-ESCOLA-11",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-014",
+                                 "id":  14,
+                                 "location":  "LAB-CRECHE-EMEI-02",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-SW-015",
+                                 "id":  15,
+                                 "location":  "LAB-CRECHE-EMEI-08",
+                                 "role":  "switch"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-001",
+                                 "id":  16,
+                                 "location":  "LAB-UNIDADE-ADM-06",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-002",
+                                 "id":  17,
+                                 "location":  "LAB-ESCOLA-06",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-003",
+                                 "id":  18,
+                                 "location":  "LAB-ESCOLA-12",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-004",
+                                 "id":  19,
+                                 "location":  "LAB-CRECHE-EMEI-03",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-005",
+                                 "id":  20,
+                                 "location":  "LAB-REMOTE-SITE-01",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-006",
+                                 "id":  21,
+                                 "location":  "LAB-PACO",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-007",
+                                 "id":  22,
+                                 "location":  "LAB-SECRETARIA-03",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-008",
+                                 "id":  23,
+                                 "location":  "LAB-UNIDADE-ADM-02",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-009",
+                                 "id":  24,
+                                 "location":  "LAB-ESCOLA-02",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-010",
+                                 "id":  25,
+                                 "location":  "LAB-ESCOLA-08",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-011",
+                                 "id":  26,
+                                 "location":  "LAB-ESCOLA-14",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-012",
+                                 "id":  27,
+                                 "location":  "LAB-CRECHE-EMEI-05",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-013",
+                                 "id":  28,
+                                 "location":  "LAB-CPD",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-014",
+                                 "id":  29,
+                                 "location":  "LAB-PACO",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-015",
+                                 "id":  30,
+                                 "location":  "LAB-SECRETARIA-05",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-016",
+                                 "id":  31,
+                                 "location":  "LAB-UNIDADE-ADM-04",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-017",
+                                 "id":  32,
+                                 "location":  "LAB-ESCOLA-04",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-018",
+                                 "id":  33,
+                                 "location":  "LAB-ESCOLA-10",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-019",
+                                 "id":  34,
+                                 "location":  "LAB-CRECHE-EMEI-01",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-AP-020",
+                                 "id":  35,
+                                 "location":  "LAB-CRECHE-EMEI-07",
+                                 "role":  "access-point"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-RTR-001",
+                                 "id":  36,
+                                 "location":  "LAB-CRECHE-EMEI-05",
+                                 "role":  "router"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-RTR-002",
+                                 "id":  37,
+                                 "location":  "LAB-CPD",
+                                 "role":  "router"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-RTR-003",
+                                 "id":  38,
+                                 "location":  "LAB-PACO",
+                                 "role":  "router"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-RTR-004",
+                                 "id":  39,
+                                 "location":  "LAB-SECRETARIA-05",
+                                 "role":  "router"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-RTR-005",
+                                 "id":  40,
+                                 "location":  "LAB-UNIDADE-ADM-04",
+                                 "role":  "router"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-FW-001",
+                                 "id":  41,
+                                 "location":  "LAB-REMOTE-SITE-02",
+                                 "role":  "firewall"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-FW-002",
+                                 "id":  42,
+                                 "location":  "LAB-CPD",
+                                 "role":  "firewall"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-FW-003",
+                                 "id":  43,
+                                 "location":  "LAB-SECRETARIA-04",
+                                 "role":  "firewall"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-CPE-001",
+                                 "id":  44,
+                                 "location":  "LAB-EDUCATION-HQ",
+                                 "role":  "wan-cpe"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-CPE-002",
+                                 "id":  45,
+                                 "location":  "LAB-SECRETARIA-01",
+                                 "role":  "wan-cpe"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-CPE-003",
+                                 "id":  46,
+                                 "location":  "LAB-SECRETARIA-07",
+                                 "role":  "wan-cpe"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-CPE-004",
+                                 "id":  47,
+                                 "location":  "LAB-UNIDADE-ADM-06",
+                                 "role":  "wan-cpe"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-CPE-005",
+                                 "id":  48,
+                                 "location":  "LAB-ESCOLA-06",
+                                 "role":  "wan-cpe"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-CPE-006",
+                                 "id":  49,
+                                 "location":  "LAB-ESCOLA-12",
+                                 "role":  "wan-cpe"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-CPE-007",
+                                 "id":  50,
+                                 "location":  "LAB-CRECHE-EMEI-03",
+                                 "role":  "wan-cpe"
+                             },
+                             {
+                                 "action":  "reused",
+                                 "name":  "GUA-LAB-CPE-008",
+                                 "id":  51,
+                                 "location":  "LAB-REMOTE-SITE-01",
+                                 "role":  "wan-cpe"
+                             }
+                         ]
+}
