@@ -2,6 +2,75 @@
 
 ## Phase status
 
+PHASE 4: N3 CONTROL CENTER MVP IMPLEMENTED AND LOCALLY VALIDATED; NO COMMIT/PUSH/TAG.
+
+Branch: `phase/4-n3-control-center`, created from `giop-lab-v0.3.0`.
+Frozen baseline remains `ef0299027098dc95fb519ad0a1cbed2f440df902`.
+The v0.3.0 tag and existing Integration write behavior are unchanged.
+
+## Phase 4 implementation and evidence (2026-10-05 local / 2026-10-06 UTC)
+
+One stateless `control-center/` service uses Python/FastAPI/Jinja2 and local
+HTML/CSS/vanilla JavaScript. It aggregates Zabbix JSON-RPC reads, GLPI High-Level
+API GETs and Integration `/health` plus authenticated `/api/v1/episodes`.
+Only authentication/session operations use outbound POST. No business mutations,
+SQLite mounts, direct database access, new databases or remediation are implemented.
+
+Pages: `/`, `/infrastructure`, `/incidents`, `/events`. Read endpoints:
+`/api/overview`, `/api/infrastructure`, `/api/incidents`, `/api/events`, `/health`.
+Source reads run concurrently; memory-only snapshots expire after 15 seconds.
+The browser polls every 20 seconds and receives projected fields, never credentials,
+upstream errors or raw ticket content. Values are escaped before HTML rendering.
+
+Live reads confirmed all three APIs Healthy, Zabbix 7.0.31, two enabled API-visible
+hosts, zero active API-visible Problems and pilot trigger 25228 OK. Bounded GLPI
+enumeration returned 128 current/non-deleted Computers, 51 NetworkEquipment and 95 Tickets visible in
+entity 0; Computers display all 128 active rows, other tables the first 100 records.
+Computer pages use `filter=is_deleted==false`. The unfiltered collection contains
+182 Computer objects including 54 soft-deleted recycle-bin records.
+127 deterministic seeded Computers + 1 GLPI Agent-discovered Computer = 128 active LAB Computers. These current synthetic LAB counts
+are separate from historical seed/read-back evidence, not municipal production totals.
+Enumeration must reach an empty page with unique ordered IDs before claiming a
+total, with a five-page limit. API metadata alone does not fabricate totals.
+
+Integration returned six episodes: two LIVE recovered awaiting operator validation,
+four dry-run. Latest actual correlation: Problem 37 → Ticket 95 → Recovery 38 →
+follow-up 2. IDs are dynamic, not permanent dashboard fixtures. Two GIOP-generated
+Incidents were visible in the current Ticket window. No lifetime duplicate count
+is available or invented.
+
+The Control Center Docker image built/started successfully at `127.0.0.1:8091`.
+Application-only networks: `giop-lab-frontend`, `giop-lab-glpi-frontend`,
+`giop-lab-integration-webhook`. UID 10002, read-only root filesystem, dropped
+capabilities, no-new-privileges and `/tmp` tmpfs. No persistent volumes, database
+networks, privileged/host mode or Docker socket.
+
+Validation includes unit/API checks, unchanged Phase 3 tests, Compose config,
+actual build/start, live endpoints and isolated headless Chromium checks for all
+pages, polling without reload, desktop/mobile rendering and absence of local
+credential values in API/DOM. Development Playwright is optional, not shipped
+in the image. Screenshots are ignored under `artifacts/control-center/`.
+No workload outage, Ticket mutation or integration state write was performed.
+
+Limits: bounded/profile-visible snapshots; asset state does not prove availability;
+synthetic infrastructure health uses only the pilot trigger. Logical CI mapping
+uses the frozen Phase 3 contract; no native Ticket-CI relation is asserted.
+Compose supports separate read identities but falls back to existing LAB credentials;
+least privilege is not certified. Aware times display UTC; unknown source timezones
+remain labelled. Detections and persisted observations may appear separately on
+the timeline. Duplicate, inventory-receipt and service-change history is not invented.
+
+Operation and demo: `docs/demo/phase4-control-center.md`.
+
+Final local results: 18 Control Center tests and six unchanged Phase 3 tests passed;
+live/headless browser checks passed, including mobile, polling and partial failure.
+Repository review checked 81 tracked/intended files against 13 distinct local
+credential values without disclosure; no matches found. `.env`, scoped alert secret,
+SQLite, virtualenv/cache and local screenshot artifacts remain ignored. No files
+are staged; HEAD still equals the frozen v0.3.0 tag target.
+
+## Frozen Phase 1–3 status
+
 PHASE 1: COMPLETE
 
 PHASE 2: COMPLETE

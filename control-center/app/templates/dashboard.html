@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GIOP · Infrastructure Operations Center</title>
+<link rel="stylesheet" href="/static/dashboard.css"><script src="/static/dashboard.js" defer></script></head>
+<body data-page="{{ page }}">
+<aside class="sidebar">
+  <a class="brand" href="/"><span class="brand-icon">G</span><span>GIOP<small>N3 CONTROL CENTER</small></span></a>
+  <div class="nav-label">OPERATIONS</div>
+  <nav aria-label="Primary"><a href="/" data-nav="overview"><span>◈</span>Overview</a><a href="/infrastructure" data-nav="infrastructure"><span>▦</span>Infrastructure</a><a href="/incidents" data-nav="incidents"><span>◷</span>Incidents</a><a href="/events" data-nav="events"><span>⇄</span>Event correlation</a></nav>
+  <div class="sidebar-bottom"><span class="lab-pill">SYNTHETIC LAB</span><p>Guaratinguetá<br>Demonstration environment</p><div class="read-only">◉ Read-only operations view</div><small>Phase 4 · Portfolio MVP</small></div>
+</aside>
+<main>
+  <details class="mobile-menu"><summary aria-label="Toggle navigation">&#9776; <span>GIOP</span><span class="menu-label">Menu</span></summary><nav aria-label="Mobile navigation"><a href="/" data-nav="overview">Overview</a><a href="/infrastructure" data-nav="infrastructure">Infrastructure</a><a href="/incidents" data-nav="incidents">Incidents</a><a href="/events" data-nav="events">Event correlation</a></nav></details>
+  <header class="topbar"><span>Infrastructure Operations Center</span><div><span class="live-dot"></span> LIVE API DATA <span class="separator">/</span> <span id="clock">UTC</span></div></header>
+  <section class="page-heading"><div><div class="eyebrow">GIOP / N3 OPERATIONS</div><h1 id="page-title">Operations overview</h1><p>Guaratinguetá Infrastructure Operations Platform — LAB</p></div><div class="refresh"><button id="refresh" type="button">↻ Refresh data</button><small id="updated" aria-live="polite">Connecting to LAB sources…</small></div></section>
+  <div id="fetch-warning" class="notice" hidden>Dashboard refresh unavailable. Previously loaded data is stale.</div>
+  <section id="status-strip" class="status-strip" aria-label="Source status"></section>
+  <div id="overview-content">
+    <section class="metric-grid" id="metrics" aria-label="Operational metrics"></section>
+    <div class="overview-grid">
+      <section class="panel correlation-panel"><div class="panel-heading"><div><div class="eyebrow">EVENT → INCIDENT</div><h2>Pilot incident correlation</h2></div><span class="subtle-tag">SYNTHETIC</span></div><div id="correlation" class="correlation"></div></section>
+      <section class="panel architecture-panel"><div class="panel-heading"><div><div class="eyebrow">CONNECTED OPERATIONS</div><h2>One operational thread</h2></div></div><div class="architecture"><div><span class="node-symbol">▤</span><strong>Synthetic workload</strong><small>Controlled service availability</small></div><span class="flow-arrow">↓</span><div><span class="node-symbol blue">◈</span><strong>Zabbix</strong><small>Observability · Problem / Recovery</small></div><span class="flow-arrow">↓</span><div><span class="node-symbol purple">⇄</span><strong>GIOP Integration</strong><small>Persistent correlation · Deduplication</small></div><span class="flow-arrow">↓</span><div><span class="node-symbol green">▦</span><strong>GLPI</strong><small>ITSM / CMDB · Incident / Follow-up</small></div></div><div class="human-note"><span>◎</span><div><strong>Human validation before closure</strong><small>Recovery adds evidence. The operator decides.</small></div></div></section>
+      <section class="panel timeline-panel"><div class="panel-heading"><div><div class="eyebrow">RECENT ACTIVITY</div><h2>Operational timeline</h2></div><span class="subtle-tag">SOURCE-RECORDED</span></div><div id="timeline" class="timeline"></div></section>
+      <section class="panel pilot-panel"><div class="panel-heading"><div><div class="eyebrow">MONITORED SERVICE</div><h2>Synthetic infrastructure</h2></div></div><div id="pilot-state"></div><a class="text-link" href="/infrastructure">Inspect operational inventory →</a><p class="scope-note">Health reflects the Zabbix pilot trigger. No container or database health is inferred.</p></section>
+    </div>
+  </div>
+  <section id="detail-content" class="panel" hidden><div class="panel-heading"><div><div class="eyebrow">READ-ONLY · SYNTHETIC LAB</div><h2 id="detail-heading"></h2></div><span class="subtle-tag">API DATA</span></div><div id="detail-body"></div></section>
+  <footer><span><span class="lab-pill">LAB</span> All records are synthetic. Municipal production operations are not represented.</span><span>Polls every 20s · Display times: UTC</span></footer>
+</main></body></html>

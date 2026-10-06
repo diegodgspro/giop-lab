@@ -1,0 +1,38 @@
+name: giop-lab-control-center
+services:
+  control-center:
+    build: ../control-center
+    restart: unless-stopped
+    ports: ["127.0.0.1:8091:8091"]
+    environment:
+      CC_ZABBIX_URL: http://zabbix-web:8080/api_jsonrpc.php
+      CC_ZABBIX_TOKEN: ${CONTROL_CENTER_ZABBIX_API_TOKEN:-${ZABBIX_API_TOKEN:-}}
+      CC_ZABBIX_USERNAME: ${CONTROL_CENTER_ZABBIX_USERNAME:-${ZABBIX_API_USERNAME:-Admin}}
+      CC_ZABBIX_PASSWORD: ${CONTROL_CENTER_ZABBIX_PASSWORD:-${ZABBIX_API_PASSWORD:-${ZABBIX_ADMIN_PASSWORD:-}}}
+      CC_GLPI_URL: http://glpi
+      CC_GLPI_USERNAME: ${CONTROL_CENTER_GLPI_USERNAME:-${GLPI_INTEGRATION_USERNAME:-}}
+      CC_GLPI_PASSWORD: ${CONTROL_CENTER_GLPI_PASSWORD:-${GLPI_INTEGRATION_PASSWORD:-}}
+      CC_GLPI_CLIENT_ID: ${CONTROL_CENTER_GLPI_CLIENT_ID:-${GLPI_INTEGRATION_OAUTH_CLIENT_ID:-}}
+      CC_GLPI_CLIENT_SECRET: ${CONTROL_CENTER_GLPI_CLIENT_SECRET:-${GLPI_INTEGRATION_OAUTH_CLIENT_SECRET:-}}
+      CC_INTEGRATION_URL: http://integration:8090
+      CC_WEBHOOK_SECRET: ${GIOP_WEBHOOK_SECRET:?Configure ignored .env}
+    networks: [zabbix-application, glpi-application, integration-application]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    read_only: true
+    tmpfs: [/tmp]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8091/health',timeout=3)"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+networks:
+  zabbix-application:
+    external: true
+    name: giop-lab-frontend
+  glpi-application:
+    external: true
+    name: giop-lab-glpi-frontend
+  integration-application:
+    external: true
+    name: giop-lab-integration-webhook

@@ -1,19 +1,26 @@
 # GIOP-LAB roadmap
 
-Historical Phase 3A planning artifact: the automatic Phase 3 MVP is now operator-validated.
-See PROJECT_STATE.md and docs/demo/phase3-mvp-demo.md for current evidence and scope.
-The exhaustive gates below are deferred Post-MVP proposals.
+All LAB data is synthetic. Source-document municipal context is separate from the
+demonstration environment and is not a dashboard data source.
 
-| Stage | Status | Boundary |
+| Stage | State | Portfolio capability |
 | --- | --- | --- |
-| Phase 1 observability | COMPLETE | Controlled workload outage/recovery PASS |
-| Phase 2 ITSM/CMDB/inventory | COMPLETE | giop-lab-v0.2.0 immutable baseline |
-| Phase 3A | DESIGN / CONTRACT VALIDATION | Documents and read-only live investigation only |
-| Phase 3 initial implementation | NOT STARTED | Must begin dry-run, separately authorized |
-| Phase 3 automatic writes | NOT ENABLED | Dedicated rights, marker reconciliation and all acceptance gates required |
+| v0.1 / Phase 1 | COMPLETE | Observability: synthetic workload detection / Recovery |
+| v0.2 / Phase 2 | COMPLETE | ITSM / CMDB: GLPI synthetic seed and agent inventory |
+| v0.3 / Phase 3 | COMPLETE AND FROZEN | Automated event-to-Incident workflow, persistent deduplication, Recovery follow-up and human validation |
+| v0.4 / Phase 4 | MVP IMPLEMENTED, LOCALLY VALIDATED; UNCOMMITTED | N3 Control Center: current API data, correlation, source status and inventory |
 
-Preparation gates: operator default-host correction decision; approve pilot CI/instance UIDs, root-entity scope and confirmed impact/priority matrix; dedicated identity/profile/OAuth grant configuration; positive marker and follow-up reconciliation tests; resolve live status readOnly discrepancy before any lifecycle expansion. No automatic commit with unresolved manual decisions.
+Phase 4 branches from `giop-lab-v0.3.0` at
+`ef0299027098dc95fb519ad0a1cbed2f440df902`. No Phase 4 commit, push or tag is authorized.
+One additional stateless presentation service joins application networks only.
+It does not modify Zabbix, GLPI, CMDB or Integration persistence.
 
-Planned boundary: Zabbix -> one integration service -> GLPI High-Level API, same-service receiver/processor and SQLite persistent volume. CI/severity mapping, durable deduplication, correlation, Recovery evidence, auditability and ticket-storm prevention. No autonomous remediation or additional platform.
+Phase 3A architecture and test-matrix documents remain historical future-hardening
+proposals. Complete API response reconciliation, exhaustive pagination hardening,
+native Ticket-CI relations, least-privilege audit, TLS outside LAB, HA, event-burst
+validation, timezone normalization and production Entity/topology mapping remain
+Post-MVP debt. Phase 4 bounded read scans do not certify production pagination.
 
-Recovery initially stays RECOVERED_PENDING_OPERATOR_VALIDATION with optional authorized follow-up, never auto-solve/close/reopen. First dry-run implementation must prove zero GLPI writes. Test design: docs/testing/phase3-test-matrix.md. Current evidence and resume context: PROJECT_STATE.md.
+Ansible, remote desktop, remediation, AI/RAG/Ollama, Grafana, NetBox, advanced
+topology, authentication portal and production deployment remain outside this MVP.
+Evidence: PROJECT_STATE.md. Demo: docs/demo/phase4-control-center.md.

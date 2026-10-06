@@ -4,6 +4,50 @@ Local synthetic Infrastructure Operations laboratory. No real municipal operatio
 
 PHASE 1: COMPLETE. PHASE 2: COMPLETE. PHASE 3: AUTOMATIC LIVE MVP VALIDATED (v0.3.0).
 
+PHASE 4: N3 CONTROL CENTER MVP IMPLEMENTED AND LOCALLY VALIDATED; uncommitted.
+
+| Portfolio progression | Capability | State |
+| --- | --- | --- |
+| v0.1 Observability | Zabbix detects synthetic workload outage / Recovery | Complete |
+| v0.2 ITSM / CMDB | GLPI synthetic inventory and Incident lifecycle | Complete |
+| v0.3 Event-to-Incident Automation | Persistent Zabbix → GLPI correlation and human validation | Frozen: giop-lab-v0.3.0 |
+| v0.4 N3 Control Center | Read-only operations dashboard using current LAB APIs | Phase 4 MVP; no release/tag yet |
+
+## Phase 4 — GIOP N3 Control Center
+
+A dark operations dashboard makes the complete LAB workflow visible: source health,
+current pilot Problem state, infrastructure inventory, event timeline and persistent
+Zabbix-to-GLPI Incident correlation. Values come from current LAB APIs;
+**SYNTHETIC LAB** labels distinguish the demonstration from municipal production.
+
+One additional stateless service uses Python, FastAPI, Jinja2, HTML/CSS and vanilla
+JavaScript. Credentials stay server-side. It performs read-only aggregation;
+the existing Integration remains the owner of event persistence and GLPI writes.
+
+```mermaid
+flowchart TB
+    O[N3 Operator] --> C[GIOP Control Center / localhost:8091]
+    C -->|read API| Z[Zabbix frontend]
+    C -->|read API / episodes| I[GIOP Integration]
+    C -->|read API| G[GLPI frontend]
+```
+
+With the base LAB and Phase 3 Integration running and `.env` configured:
+
+```powershell
+docker compose --env-file .env -f docker/docker-compose.control-center.yml up -d --build
+```
+
+Open [localhost:8091](http://localhost:8091). Pages: Overview, Infrastructure,
+Incidents and Event correlation. Data refreshes every 20 seconds without a page
+reload. Source failures display Unavailable rather than invented zero counts.
+Counts/listing windows have scope labels; no lifetime deduplication counter is claimed.
+See the [Phase 4 demo and limitations](docs/demo/phase4-control-center.md).
+
+The container joins only existing Zabbix frontend, GLPI frontend and Integration
+webhook application networks, binds `127.0.0.1:8091`, and has no persistent volume,
+database network/access or Docker socket. This is a local portfolio MVP.
+
 Phase 1 provides Zabbix observability of a controlled Nginx workload. The operator validated the 2026-10-02 outage from 19:42:31 to 19:44:26 local time (1m55s), final problem RESOLVED and smoke result `lab.web.status [s|1]`: PASS.
 
 Phase 2 provides GLPI 11.0.9 ITSM/CMDB with MySQL persistence. Validated seed: 41 Locations, 127 Computers, 51 NetworkEquipment and 93 Tickets. Separate GLPI Agent 1.20 inventory discovered `GUA-LAB-INVENTORY-001`, Computer ID 182. 127 seeded + 1 discovered = 128 conceptual LAB Computers. The endpoint remained ID 182 after `lab-down` / `lab-up`: persistence PASS.
