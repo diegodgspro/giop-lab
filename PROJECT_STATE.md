@@ -2,13 +2,54 @@
 
 ## Phase status
 
-PHASE 4: N3 CONTROL CENTER MVP IMPLEMENTED AND LOCALLY VALIDATED; NO COMMIT/PUSH/TAG.
+PHASE 5: OPERATIONAL RUNBOOKS MVP COMPLETE AND LOCALLY VALIDATED; LOCAL RELEASE giop-lab-v0.5.0; NO PUSH.
 
-Branch: `phase/4-n3-control-center`, created from `giop-lab-v0.3.0`.
-Frozen baseline remains `ef0299027098dc95fb519ad0a1cbed2f440df902`.
-The v0.3.0 tag and existing Integration write behavior are unchanged.
+Branch: `phase/5-operational-runbooks`, created from `giop-lab-v0.4.0`.
+Frozen baseline remains `42e3cbab9758624dfe3be42459f6931ae3519197`.
+The v0.4.0 tag and existing Integration write behavior are unchanged.
 
-## Phase 4 implementation and evidence (2026-10-05 local / 2026-10-06 UTC)
+## Phase 5 implementation and live evidence (2026-10-06 UTC)
+
+Exactly three operator-local PowerShell runbooks share `scripts/lib/GiopRunbooks.ps1`:
+RB-OPS-001 read-only health, RB-OPS-002 read-only sanitized incident diagnostics,
+RB-OPS-003 dry-run by default / explicit -Execute for only web-workload. Fixed
+Compose/container/host/trigger/item/CI/Ticket identities fail closed. Apply rechecks
+identity and holds a local mutex. No generic command inputs, automatic remediation,
+new service/DB/network, DB access, or direct GLPI/Zabbix mutation is introduced.
+
+Every execution writes ignored summary.json, summary.md and diagnostics.txt with
+UTC timestamps, execution/runbook IDs, operator request, mode, fixed target,
+preconditions, actions, results, validation and overall status. Fields are projected;
+known credentials are redacted. No raw logs, headers, .env or container environment.
+The static Control Center `/runbooks` catalog shows purpose/risk/mode, explicitly
+reports latest execution unavailable, and offers no browser execution/API.
+
+Actual controlled validation: Problem 41 → Ticket 97 → Recovery 42 → Follow-up 4.
+Health was DEGRADED; diagnostics captured that actual episode. Plan performed no
+action. Explicit recovery started only web-workload and validated fresh item=1,
+trigger=OK, healthy HTTP workload, same recovered episode and API-confirmed GLPI
+follow-up. Existing Phase 3 automation performed the Incident/Recovery writes.
+Final workload and Control Center returned Healthy; Ticket remains for human validation.
+
+Live artifacts (ignored): baseline `20261006T130553218Z-a782931f`, degraded health
+`20261006T130618965Z-a1e757d7`, diagnostics `20261006T130620304Z-301c5034`, plan
+`20261006T130621479Z-af7677a8`, apply `20261006T130622788Z-7d82a8f6`, final health
+`20261006T130640183Z-7358269d`. Cross-reference: artifacts/runbooks/phase5-live-demo.json.
+An initial interrupted validation exposed Windows PowerShell 5.1's treatment of
+Docker progress on stderr; the workload was restored, producing historical
+Problem 39 / Ticket 96 / Recovery 40 / Follow-up 3. The fixed runbook now uses the
+native exit code. These actual LAB events are retained, not deleted or fabricated.
+Current inventory remains 128 active Computers and 51 NetworkEquipment; Tickets
+increased from the historical Phase 4 count 95 to 97 through these two actual incidents.
+
+Validation: 17 offline runbook cases; 20 Control Center tests (including all existing
+Phase 4 cases); six unchanged Phase 3 tests. Live apply/end-to-end evidence above.
+Browser desktop/mobile/API and secret/whitespace review are recorded in the Phase 5 demo.
+Finalization: `feat(runbooks): add controlled N3 operational response workflow`;
+annotated local tag `giop-lab-v0.5.0`. Runtime evidence remains excluded. No push or
+Phase 6. Details: docs/demo/phase5-operational-runbooks.md.
+
+## Historical Phase 4 implementation and evidence (2026-10-05 local / 2026-10-06 UTC)
 
 One stateless `control-center/` service uses Python/FastAPI/Jinja2 and local
 HTML/CSS/vanilla JavaScript. It aggregates Zabbix JSON-RPC reads, GLPI High-Level

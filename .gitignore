@@ -8,6 +8,7 @@ __pycache__/
 integration/.venv/
 control-center/.venv/
 artifacts/control-center/
+artifacts/runbooks/
 data/integration/
 *.sqlite3
 *.sqlite3-wal

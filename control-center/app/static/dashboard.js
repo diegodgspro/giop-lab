@@ -22,11 +22,16 @@ const identifier = value => {
 };
 const row = (number,title,detail,value) => `<div class="correlation-row"><span class="step-number">${number}</span><div class="step-content"><strong>${escape(title)}</strong><small>${identifier(detail)}</small></div><div class="step-value">${escape(value)}</div></div>`;
 document.querySelectorAll(`[data-nav="${page}"]`).forEach(link => {link.classList.add('active');link.setAttribute('aria-current','page');});
-const titles={overview:'Operations overview',infrastructure:'Infrastructure inventory',incidents:'Integration incidents',events:'Event correlation'};
+const titles={overview:'Operations overview',infrastructure:'Infrastructure inventory',incidents:'Integration incidents',events:'Event correlation',runbooks:'Operational Runbooks'};
 el('page-title').textContent=titles[page];
 el('detail-heading').textContent=titles[page];
 el('overview-content').hidden=page!=='overview';
-el('detail-content').hidden=page==='overview';
+el('detail-content').hidden=page==='overview'||page==='runbooks';
+if(page==='runbooks'){
+  el('status-strip').hidden=true;
+  el('refresh').hidden=true;
+  el('updated').textContent='Read-only catalog · Operator-local execution';
+}
 
 function render(d){
   const z=d.zabbix,g=d.glpi,i=d.integration,infra=d.synthetic_infrastructure,m=d.episode_metrics;
@@ -74,5 +79,5 @@ async function refresh(){
   catch{el('fetch-warning').hidden=false;}finally{busy=false;el('refresh').disabled=false;}
 }
 el('refresh').addEventListener('click',refresh);
-refresh();setInterval(refresh,20000);
+if(page!=='runbooks'){refresh();setInterval(refresh,20000);}
 function clock(){el('clock').textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'UTC'})+' UTC';}clock();setInterval(clock,1000);

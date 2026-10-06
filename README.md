@@ -4,14 +4,36 @@ Local synthetic Infrastructure Operations laboratory. No real municipal operatio
 
 PHASE 1: COMPLETE. PHASE 2: COMPLETE. PHASE 3: AUTOMATIC LIVE MVP VALIDATED (v0.3.0).
 
-PHASE 4: N3 CONTROL CENTER MVP IMPLEMENTED AND LOCALLY VALIDATED; uncommitted.
+PHASE 4: N3 CONTROL CENTER FROZEN AT `giop-lab-v0.4.0` (`42e3cba`).
+PHASE 5: OPERATIONAL RUNBOOKS MVP COMPLETE AND LOCALLY VALIDATED; `giop-lab-v0.5.0`.
 
 | Portfolio progression | Capability | State |
 | --- | --- | --- |
 | v0.1 Observability | Zabbix detects synthetic workload outage / Recovery | Complete |
 | v0.2 ITSM / CMDB | GLPI synthetic inventory and Incident lifecycle | Complete |
 | v0.3 Event-to-Incident Automation | Persistent Zabbix → GLPI correlation and human validation | Frozen: giop-lab-v0.3.0 |
-| v0.4 N3 Control Center | Read-only operations dashboard using current LAB APIs | Phase 4 MVP; no release/tag yet |
+| v0.4 N3 Control Center | Read-only operations dashboard using current LAB APIs | Frozen: giop-lab-v0.4.0 |
+| v0.5 Operational Runbooks | Diagnose, collect evidence, approve fixed LAB recovery, validate and audit | Local release: giop-lab-v0.5.0 |
+
+## Phase 5 — Operational Runbooks
+
+Monitoring alone is not operations. Three operator-local PowerShell runbooks add
+service checks, sanitized incident diagnostics and explicitly approved recovery of
+only the synthetic `web-workload`. Recovery defaults to a plan; `-Execute` is
+required. Zabbix → Integration → GLPI remains responsible for Incident/Recovery
+evidence, with human validation before closure. No autonomous remediation or
+production readiness is claimed.
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/runbooks/Invoke-GiopServiceHealthCheck.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/runbooks/Collect-GiopIncidentDiagnostics.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/runbooks/Invoke-GiopControlledRecovery.ps1
+```
+
+The last command is **dry-run only**. Review local `artifacts/runbooks/<execution-id>/`
+before approving an action. Control Center's [Operational Runbooks](http://localhost:8091/runbooks)
+catalog is read only, with no browser Execute button. See the
+[Phase 5 demo, apply command and limitations](docs/demo/phase5-operational-runbooks.md).
 
 ## Phase 4 — GIOP N3 Control Center
 

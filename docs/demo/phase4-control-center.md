@@ -1,5 +1,11 @@
 # Phase 4 — GIOP N3 Control Center MVP
 
+Historical Phase 4 evidence is preserved below (Event 37 / Ticket 95 / Recovery 38 /
+Follow-up 2 and 95 visible Tickets). The newer synthetic Phase 5 validation is
+Problem 41 / Ticket 97 / Recovery 42 / Follow-up 4, with 97 visible Tickets; see
+[the Phase 5 demo](phase5-operational-runbooks.md). These are synthetic LAB records,
+not municipal production data. The original stop boundary below is historical.
+
 The portfolio Control Center presents the complete monitoring-to-ITSM workflow to
 infrastructure professionals and technical reviewers. It uses **current synthetic
 LAB API data**, never source-document municipal operational totals or invented

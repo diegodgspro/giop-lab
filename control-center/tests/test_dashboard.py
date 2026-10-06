@@ -82,7 +82,7 @@ def test_incidents_endpoint_and_missing_source():
     assert client('glpi').get('/api/incidents').json()['items'] is None
 
 
-@pytest.mark.parametrize('path', ['/', '/infrastructure', '/incidents', '/events'])
+@pytest.mark.parametrize('path', ['/', '/infrastructure', '/incidents', '/events', '/runbooks'])
 def test_html_pages_render_without_credentials(path):
     response = client().get(path)
     assert response.status_code == 200
@@ -96,6 +96,18 @@ def test_no_mutating_inbound_endpoints():
     c = client()
     for path in ('/api/events', '/api/incidents', '/api/overview', '/api/infrastructure'):
         assert c.post(path, json={}).status_code == 405
+
+
+def test_runbook_catalog_is_read_only_and_discloses_execution_visibility():
+    c = client()
+    html = c.get('/runbooks').text
+    for runbook in ('RB-OPS-001', 'RB-OPS-002', 'RB-OPS-003'):
+        assert runbook in html
+    assert 'Latest execution: unavailable' in html
+    assert 'Dry run / plan only' in html
+    assert 'browser execution' in html
+    assert c.post('/runbooks').status_code == 405
+    assert c.post('/api/runbooks/execute').status_code == 404
 
 
 def test_glpi_read_adapter_projects_fields_and_verifies_total():

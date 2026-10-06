@@ -140,6 +140,7 @@ def create_app(sources=None, ttl=15):
     @app.get('/infrastructure')
     @app.get('/incidents')
     @app.get('/events')
+    @app.get('/runbooks')
     def page(request: Request):
         return templates.TemplateResponse(request=request, name='dashboard.html', context={'page': request.url.path.strip('/') or 'overview'})
 

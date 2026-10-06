@@ -7,11 +7,11 @@
 <aside class="sidebar">
   <a class="brand" href="/"><span class="brand-icon">G</span><span>GIOP<small>N3 CONTROL CENTER</small></span></a>
   <div class="nav-label">OPERATIONS</div>
-  <nav aria-label="Primary"><a href="/" data-nav="overview"><span>◈</span>Overview</a><a href="/infrastructure" data-nav="infrastructure"><span>▦</span>Infrastructure</a><a href="/incidents" data-nav="incidents"><span>◷</span>Incidents</a><a href="/events" data-nav="events"><span>⇄</span>Event correlation</a></nav>
-  <div class="sidebar-bottom"><span class="lab-pill">SYNTHETIC LAB</span><p>Guaratinguetá<br>Demonstration environment</p><div class="read-only">◉ Read-only operations view</div><small>Phase 4 · Portfolio MVP</small></div>
+  <nav aria-label="Primary"><a href="/" data-nav="overview"><span>◈</span>Overview</a><a href="/infrastructure" data-nav="infrastructure"><span>▦</span>Infrastructure</a><a href="/incidents" data-nav="incidents"><span>◷</span>Incidents</a><a href="/events" data-nav="events"><span>⇄</span>Event correlation</a><a href="/runbooks" data-nav="runbooks"><span>☷</span>Operational Runbooks</a></nav>
+  <div class="sidebar-bottom"><span class="lab-pill">SYNTHETIC LAB</span><p>Guaratinguetá<br>Demonstration environment</p><div class="read-only">◉ Read-only operations view</div><small>GIOP · Portfolio LAB</small></div>
 </aside>
 <main>
-  <details class="mobile-menu"><summary aria-label="Toggle navigation">&#9776; <span>GIOP</span><span class="menu-label">Menu</span></summary><nav aria-label="Mobile navigation"><a href="/" data-nav="overview">Overview</a><a href="/infrastructure" data-nav="infrastructure">Infrastructure</a><a href="/incidents" data-nav="incidents">Incidents</a><a href="/events" data-nav="events">Event correlation</a></nav></details>
+  <details class="mobile-menu"><summary aria-label="Toggle navigation">&#9776; <span>GIOP</span><span class="menu-label">Menu</span></summary><nav aria-label="Mobile navigation"><a href="/" data-nav="overview">Overview</a><a href="/infrastructure" data-nav="infrastructure">Infrastructure</a><a href="/incidents" data-nav="incidents">Incidents</a><a href="/events" data-nav="events">Event correlation</a><a href="/runbooks" data-nav="runbooks">Operational Runbooks</a></nav></details>
   <header class="topbar"><span>Infrastructure Operations Center</span><div><span class="live-dot"></span> LIVE API DATA <span class="separator">/</span> <span id="clock">UTC</span></div></header>
   <section class="page-heading"><div><div class="eyebrow">GIOP / N3 OPERATIONS</div><h1 id="page-title">Operations overview</h1><p>Guaratinguetá Infrastructure Operations Platform — LAB</p></div><div class="refresh"><button id="refresh" type="button">↻ Refresh data</button><small id="updated" aria-live="polite">Connecting to LAB sources…</small></div></section>
   <div id="fetch-warning" class="notice" hidden>Dashboard refresh unavailable. Previously loaded data is stale.</div>
@@ -26,5 +26,17 @@
     </div>
   </div>
   <section id="detail-content" class="panel" hidden><div class="panel-heading"><div><div class="eyebrow">READ-ONLY · SYNTHETIC LAB</div><h2 id="detail-heading"></h2></div><span class="subtle-tag">API DATA</span></div><div id="detail-body"></div></section>
-  <footer><span><span class="lab-pill">LAB</span> All records are synthetic. Municipal production operations are not represented.</span><span>Polls every 20s · Display times: UTC</span></footer>
+  {% if page == 'runbooks' %}
+  <section class="panel runbooks-panel" aria-label="Operational runbook catalog">
+    <div class="panel-heading"><div><div class="eyebrow">DIAGNOSE · APPROVE · RECOVER · VALIDATE</div><h2>Controlled operational response</h2></div><span class="subtle-tag">OPERATOR LOCAL</span></div>
+    <div class="runbooks-body">
+      <p>Monitoring alone is not operations. Review evidence, invoke the approved runbook locally, then validate the result. Every execution records sanitized evidence in the synthetic LAB.</p>
+      <article><h3>RB-OPS-001 · Service Health Check</h3><p>Check workload health, Zabbix frontend/API and pilot trigger, GLPI frontend/API, Integration and Control Center.</p><p><strong>Risk:</strong> Low · <strong>Mode:</strong> Read only · PASS / DEGRADED / FAIL / UNKNOWN</p><code>scripts/runbooks/Invoke-GiopServiceHealthCheck.ps1</code></article>
+      <article><h3>RB-OPS-002 · Collect Incident Diagnostics</h3><p>Collect current pilot Problem/Recovery, mapped Ticket, episode, connectivity and container state into sanitized evidence.</p><p><strong>Risk:</strong> Low · <strong>Mode:</strong> Read only</p><code>scripts/runbooks/Collect-GiopIncidentDiagnostics.ps1</code></article>
+      <article><h3>RB-OPS-003 · Controlled LAB Recovery</h3><p>Restore only web-workload / gua-lab-srv-web-001 after identity checks. Existing Zabbix → Integration → GLPI automation records Recovery; the operator validates before closure.</p><p><strong>Risk:</strong> Controlled write · <strong>Default:</strong> Dry run / plan only · <strong>Approval:</strong> Explicit local -Execute</p><code>scripts/runbooks/Invoke-GiopControlledRecovery.ps1</code></article>
+      <p class="table-note">Latest execution: unavailable in this read-only catalog. Audit records remain on the operator workstation in artifacts/runbooks/&lt;execution-id&gt;/. No runtime artifact mount or browser execution is provided.</p>
+    </div>
+  </section>
+  {% endif %}
+  <footer><span><span class="lab-pill">LAB</span> All records are synthetic. Municipal production operations are not represented.</span><span>{% if page == 'runbooks' %}Operator-local audit · No browser execution{% else %}Polls every 20s · Display times: UTC{% endif %}</span></footer>
 </main></body></html>
