@@ -2,7 +2,7 @@
 
 Local synthetic Infrastructure Operations laboratory. No real municipal operational dataset is represented by the synthetic LAB. The actual physical municipal site count remains TO VALIDATE.
 
-PHASE 1: COMPLETE. PHASE 2: COMPLETE. PHASE 3: NOT STARTED.
+PHASE 1: COMPLETE. PHASE 2: COMPLETE. PHASE 3: AUTOMATIC LIVE MVP VALIDATED (v0.3.0).
 
 Phase 1 provides Zabbix observability of a controlled Nginx workload. The operator validated the 2026-10-02 outage from 19:42:31 to 19:44:26 local time (1m55s), final problem RESOLVED and smoke result `lab.web.status [s|1]`: PASS.
 
@@ -31,6 +31,74 @@ Entity creation was rejected; native Locations hold the synthetic topology. Tick
 
 The older `Zabbix server` problem `Linux: Zabbix agent is not available (for 3m)` is unrelated LAB configuration noise to review; no recovery is claimed.
 
-There is no Zabbix -> GLPI incident automation. The next proposed Phase 3 objective is architecture design for CI/severity mapping, deduplication, correlation, recovery, auditability and ticket-storm prevention, without autonomous remediation.
+## Phase 3 — automated monitoring to ITSM
+
+```mermaid
+flowchart LR
+    Z[Zabbix] -->|Trigger Action / giop-alert.sh| I[GIOP Integration]
+    I -->|Incident / Recovery follow-up| G[GLPI]
+    I <--> S[(SQLite correlation state)]
+    G --> O[Human validation before closure]
+```
+
+The local pilot demonstrates **event-driven IT operations**, **automated incident
+creation**, **persistent correlation state**, **deduplication**, **Recovery
+correlation**, and **idempotent Zabbix provisioning**. Human validation precedes
+closure; the integration does not close tickets automatically.
+
+One FastAPI/Python container uses one worker and a persistent SQLite volume.
+Default mode is dry-run; the validated instance runs LIVE. Only host 10683 AND
+trigger 25228 maps to Computer 1/entity 0, distinct from inventory Computer 182.
+Integration binds localhost port 8090 and joins application networks only.
+
+Start with `docker compose --env-file .env -f docker/docker-compose.integration.yml up -d --build`
+after configuring dedicated credentials and the shared secret in ignored `.env`.
+Provision with `scripts/Enable-GiopZabbixDelivery.ps1`; `-WhatIf` provides read-only
+inspection. See the [MVP demo](docs/demo/phase3-mvp-demo.md) and
+[automatic delivery runbook](docs/demo/phase3-automatic-delivery.md).
+The internal endpoint is `http://integration:8090/api/v1/zabbix/events`.
+Phase 3A documents preserve future hardening proposals.
+
+## Validated automatic MVP evidence (2026-10-05)
+
+All LAB records are synthetic; these IDs are not municipal production data.
+Operator-confirmed Zabbix 7.0.31 and LIVE integration completed this architecture:
+
+Synthetic workload → Zabbix detection → Trigger Action → `giop-alert.sh` →
+FastAPI integration → SQLite persistence/deduplication → GLPI Incident →
+Zabbix Recovery → GLPI Follow-up → operator validation.
+
+The pilot is restricted to host **10683 AND trigger 25228**. Stopping the synthetic
+workload produced Zabbix pilot event **37**. The automatic Action delivered it,
+the integration persisted **PROBLEM_OPEN**, and GLPI automatically created
+**Ticket #95**, titled **GIOP-LAB Zabbix synthetic event 37**.
+After workload restoration, Zabbix detected Recovery and the correlated episode
+became **RECOVERED_PENDING_OPERATOR_VALIDATION**, with a GLPI Recovery follow-up.
+Neither `Send-GiopSyntheticProblem.ps1` nor `Send-GiopSyntheticRecovery.ps1` was
+used in this automatic demonstration. Automatic closure is intentionally disabled.
+The Recovery event ID and follow-up ID were not supplied; no values are invented.
+
+Automatic provisioning completed; the second run returned **UNCHANGED for all
+managed objects**, confirming operator-observed idempotency. Earlier operator LIVE
+checks confirmed duplicate Problem/Recovery suppression. Local mocked tests verify
+one ticket/one follow-up after duplicates and restart; these fixtures are separate
+from event 37 and Ticket 95.
+
+Zabbix displayed approximately UTC-3 while GLPI displayed UTC for the same event.
+This LAB presentation difference is non-blocking MVP technical debt.
+
+## Post-MVP technical debt
+
+These items do not block **v0.3.0**; this local pilot is not certified for production:
+
+- Complete API response reconciliation, including ambiguous write outcomes.
+- Exhaustive pagination hardening.
+- Native GLPI Ticket-CI relation (current mapping is logical/content/state only).
+- Full least-privilege audit.
+- TLS outside the local LAB.
+- HA.
+- Larger event-burst validation.
+- Timezone normalization.
+- Production Entity/topology mapping.
 
 See [project state](PROJECT_STATE.md), [v0.2 architecture](docs/architecture/lab-v0.2.md), [CMDB model](docs/architecture/cmdb-model-v0.1.md), [CI naming](docs/standards/ci-naming-standard.md), [outage runbook](docs/runbooks/RB-LAB-001-service-outage.md) and [GLPI runbook](docs/runbooks/RB-LAB-002-glpi-incident-lifecycle.md). Runtime evidence is operator-supplied; finalization CLI checks are static.

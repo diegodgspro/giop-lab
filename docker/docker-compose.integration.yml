@@ -1,0 +1,35 @@
+name: giop-lab-integration
+services:
+  integration:
+    build: ../integration
+    restart: unless-stopped
+    environment:
+      GIOP_INTEGRATION_MODE: ${GIOP_INTEGRATION_MODE:-dry-run}
+      GIOP_WEBHOOK_SECRET: ${GIOP_WEBHOOK_SECRET:?Configure ignored .env}
+      GIOP_GLPI_URL: http://glpi
+      GLPI_INTEGRATION_USERNAME: ${GLPI_INTEGRATION_USERNAME:-}
+      GLPI_INTEGRATION_PASSWORD: ${GLPI_INTEGRATION_PASSWORD:-}
+      GLPI_INTEGRATION_OAUTH_CLIENT_ID: ${GLPI_INTEGRATION_OAUTH_CLIENT_ID:-}
+      GLPI_INTEGRATION_OAUTH_CLIENT_SECRET: ${GLPI_INTEGRATION_OAUTH_CLIENT_SECRET:-}
+    ports: ["127.0.0.1:${GIOP_INTEGRATION_PORT:-8090}:8090"]
+    volumes: ["integration-state:/data"]
+    networks: [glpi-application, webhook-application]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    read_only: true
+    tmpfs: [/tmp]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8090/health',timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+networks:
+  glpi-application:
+    external: true
+    name: giop-lab-glpi-frontend
+  webhook-application:
+    name: giop-lab-integration-webhook
+    internal: true
+volumes:
+  integration-state:
+    name: giop-lab-integration-state

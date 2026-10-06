@@ -1,0 +1,12 @@
+# Merge with the base stack ONLY. Adds an application-only webhook network.
+services:
+  zabbix-server:
+    volumes:
+      - ../integration/giop-alert.sh:/usr/lib/zabbix/alertscripts/giop-alert.sh:ro
+      - ../.env.zabbix-alert:/run/giop/alert.env:ro
+    networks:
+      - giop-lab-integration-webhook
+networks:
+  giop-lab-integration-webhook:
+    external: true
+    name: giop-lab-integration-webhook

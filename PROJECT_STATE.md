@@ -6,7 +6,9 @@ PHASE 1: COMPLETE
 
 PHASE 2: COMPLETE
 
-PHASE 3: NOT STARTED
+PHASE 3A: PRESERVED AS FUTURE PRODUCTION-HARDENING DOCUMENTATION
+
+PHASE 3 MVP: AUTOMATIC LIVE VALIDATED; v0.3.0 LOCAL FINALIZATION
 
 No real municipal operational dataset is represented by the synthetic LAB. The actual physical municipal site count remains TO VALIDATE.
 
@@ -30,7 +32,79 @@ Persistence: PASS. After `lab-down` -> `lab-up`, the endpoint remained Computer 
 
 ## Architecture and exposure
 
-N3 Operator uses Zabbix for observability of the synthetic workload and GLPI for ITSM/CMDB, deterministic seed and automated inventory. No Zabbix -> GLPI incident automation exists.
+N3 Operator uses Zabbix for observability of the synthetic workload and GLPI for ITSM/CMDB, deterministic seed and automated inventory. Phase 3 MVP now implements the pilot integration described below; historical Phase 3A evidence remains preserved.
+
+## Phase 3 MVP strategy and implementation (2026-10-05)
+
+Current branch: `phase/3-mvp-integration`. Portfolio MVP supersedes historical
+Phase 3A implementation gates, while preserving all its architecture/security files
+as future hardening documentation. Finalization is authorized for a local commit and
+annotated giop-lab-v0.3.0 tag only; no push or Phase 4.
+
+Implemented: one FastAPI/Python service, one worker, SQLite named volume;
+authenticated bounded JSON webhook; explicit pilot host 10683 / trigger 25228 /
+canonical GUA-LAB-SRV-WEB-001 / Computer 1 / entity 0 / immutable CI UID.
+Default dry-run persists intended decisions without GLPI access. Live mode creates
+one type-1 Incident, external_id/content marker and one public Recovery follow-up.
+The integration performs no lifecycle transitions, assignment, asset changes or remediation.
+Recovery state is RECOVERED_PENDING_OPERATOR_VALIDATION. Event/marker uniqueness,
+serialized processing and intent-before-send prevent blind duplicate writes after restart.
+
+Separate integration Compose binds 127.0.0.1:8090; only GLPI frontend and dedicated
+webhook application networks. Optional source override attaches Zabbix Server to
+the webhook network with a secret-free alert script; the secret is supplied from
+ignored .env through scoped .env.zabbix-alert, never stored in Zabbix media parameters. No DB network access,
+privileged container, host network or Docker socket. All content is synthetic LAB.
+
+Operator delivery scripts, authenticated JSON state inspection and five-minute
+demo: `docs/demo/phase3-mvp-demo.md`. Six automated test functions cover the eight
+requested scenarios plus dry-run, bounds, concurrency and ambiguous write handling.
+Manual LIVE GLPI writes, deduplication and automatic Action delivery are
+operator-validated. Mocked tests do not
+certify external_id roundtrip or comprehensive profile grants. Production pagination,
+reconciliation, full least privilege, priority matrix and lifecycle semantics remain debt.
+
+## Validated automatic MVP evidence (2026-10-05)
+
+All LAB records are synthetic; these IDs are not municipal production data.
+Operator-confirmed Zabbix 7.0.31 and LIVE integration completed this architecture:
+
+Synthetic workload → Zabbix detection → Trigger Action → `giop-alert.sh` →
+FastAPI integration → SQLite persistence/deduplication → GLPI Incident →
+Zabbix Recovery → GLPI Follow-up → operator validation.
+
+The pilot is restricted to host **10683 AND trigger 25228**. Stopping the synthetic
+workload produced Zabbix pilot event **37**. The automatic Action delivered it,
+the integration persisted **PROBLEM_OPEN**, and GLPI automatically created
+**Ticket #95**, titled **GIOP-LAB Zabbix synthetic event 37**.
+After workload restoration, Zabbix detected Recovery and the correlated episode
+became **RECOVERED_PENDING_OPERATOR_VALIDATION**, with a GLPI Recovery follow-up.
+Neither `Send-GiopSyntheticProblem.ps1` nor `Send-GiopSyntheticRecovery.ps1` was
+used in this automatic demonstration. Automatic closure is intentionally disabled.
+The Recovery event ID and follow-up ID were not supplied; no values are invented.
+
+Automatic provisioning completed; the second run returned **UNCHANGED for all
+managed objects**, confirming operator-observed idempotency. Earlier operator LIVE
+checks confirmed duplicate Problem/Recovery suppression. Local mocked tests verify
+one ticket/one follow-up after duplicates and restart; these fixtures are separate
+from event 37 and Ticket 95.
+
+Zabbix displayed approximately UTC-3 while GLPI displayed UTC for the same event.
+This LAB presentation difference is non-blocking MVP technical debt.
+
+## Post-MVP technical debt
+
+These items do not block **v0.3.0**; this local pilot is not certified for production:
+
+- Complete API response reconciliation, including ambiguous write outcomes.
+- Exhaustive pagination hardening.
+- Native GLPI Ticket-CI relation (current mapping is logical/content/state only).
+- Full least-privilege audit.
+- TLS outside the local LAB.
+- HA.
+- Larger event-burst validation.
+- Timezone normalization.
+- Production Entity/topology mapping.
 
 Zabbix frontend binds `127.0.0.1:8080`; GLPI frontend binds `127.0.0.1:8081`; both returned HTTP 200. PostgreSQL and MySQL have no host exposure. Named volumes retain Zabbix PostgreSQL, GLPI MySQL and GLPI application data.
 
@@ -56,10 +130,44 @@ The seed uses read-before-create pagination. A one-time reviewed cleanup removed
 
 ## Finalization static review
 
+Phase 3 MVP final regression (2026-10-05): PASS. PowerShell parser validated
+22 scripts/tests; the repository structure validator passed. Six Python/FastAPI
+integration tests passed, covering persistent deduplication across restart,
+concurrent repeats, Recovery correlation, dry-run, invalid requests, nonpilot
+events and uncertain writes. GLPI is mocked in this suite. Offline Zabbix
+provisioning tests passed for WhatIf, create, unchanged rerun, drift update,
+preservation, duplicate rejection and pilot-only guards.
+
+Docker Compose config validation passed for base, inventory, integration and
+base + integration-source using `.env.example` and synthetic inventory placeholders;
+no containers were changed by these checks. Working and staged `git diff --check`
+passed. Secret review scanned 67 indexed files and matched 14 local credential
+values without disclosure: no matches or credential signatures found. Literal
+review found only runtime references, configuration flags and synthetic test values.
+`.env` and `.env.zabbix-alert` remain ignored and untracked; runtime SQLite,
+virtualenv/cache files and logs are excluded. Pytest reported one upstream AnyIO
+deprecation warning. The finalization does not repeat the operator's live outage.
+
+The following earlier static-review paragraph records Phase 2 finalization.
+
 Repository secret review covers tracked and intended untracked files, local credential-value matching without printing values, credential signatures and manual review of runtime references. `.env` remains ignored. No real secret or copied credential-bearing Authorization header was found. The existing Zabbix bootstrap references the public factory default only to replace it with the local configured password; this is not a local secret. No accidental temporary artifacts were found.
 
 Static checks passed: PowerShell parser for all scripts/tests, shell syntax for the Agent entrypoint and Zabbix bootstrap, repository structure validator, JSON counts/uniqueness/logical CI references, both Compose files via `docker compose config --quiet` with placeholders, and `git diff --check`. Compose validates YAML without starting containers. PSScriptAnalyzer and PyYAML were unavailable; no additional lint result is claimed. Runtime results above remain operator evidence; CLI finalization does not claim Docker runtime testing.
 
-## Next proposed objective only
+## Historical Phase 3A preparation (superseded by the validated MVP)
 
-Design Zabbix -> GLPI event-to-incident integration with CI mapping, severity mapping, deduplication, event correlation, recovery handling, auditability, no ticket storm and no autonomous remediation. Phase 3 is NOT STARTED. No integration or additional platform is implemented or approved by this completion record.
+Branch phase/3a-integration-contract starts exactly at giop-lab-v0.2.0 commit c364e10e4182b7afd09aafafd8dc44f0eba858ea. Tag unchanged. No new commit, push, platform, receiver, integration service/DB, media type/action or business API write.
+
+Read-only live evidence on 2026-10-02 confirms Zabbix Server/Web/Agent 2 all 7.0.31, revision e7da53e for binaries. Exact image references/digests and GLPI OpenAPI canonical hash are in docs/architecture/zabbix-glpi-integration-v0.1.md. GLPI CLI remains 11.0.9; API schema version 2.3.0. Ticket GET/POST/PATCH and follow-up GET/POST are exposed by schema; collection/follow-up and Computer GET were checked without writes. external_id exact RSQL filter accepted with zero-result marker. Positive marker roundtrip and dedicated rights remain unvalidated. No native Ticket-CI write association found. status.id is readOnly in live schema despite Phase 2 seed mutation evidence; no lifecycle mutation is authorized.
+
+Old warning root cause confirmed: default host 10084 has Linux by Zabbix agent and Zabbix server health, passive interface 127.0.0.1:10050. Server-container zabbix_get failed there. Agent 2 is separate and belongs to synthetic host 10683. Proposed operator-only correction: Unlink and clear ONLY Linux by Zabbix agent, retain health template; do not manually close/fabricate recovery. No live change was made. Exact operator steps and consequences are documented.
+
+Pilot contract: immutable CI UID in event-ci-mapping-v0.1.md, host 10683 / trigger 25228 / Computer 1 / entity 0 / synthetic-web-tcp. Computer 182 inventory endpoint is NOT this CI. Mapping status pending operator approval. Allow exactly the controlled TCP trigger. Unknown/multiple mappings fail closed. Proposed pilot impact 1 and configured GLPI priority matrix require operator confirmation.
+
+Dedicated technical identity giop-lab-zabbix-glpi-integration must be created by operator only after scope/grant decisions. Never reuse inventory identity. Existing CLI Automation effective grants are not certified least privilege. Initial proposed rights: own-ticket read/Create, public follow-up read/add to own tickets, Computer Read, root entity 0 nonrecursive only if approved. Update rights deferred until necessary; no state transitions/admin/deletion/asset writes. API grant/ownership and least-privilege acceptance need validation with new identity. Instructions: integration-security-v0.1.md.
+
+Design: one service, SQLite persistent volume, dry-run first, episode and operation unique keys, intent-before-send and external_id reconciliation, no blind retry after lost response. Recovery state RECOVERED_PENDING_OPERATOR_VALIDATION; no solve/close/reopen. No DB access or autonomous remediation.
+
+Documents: zabbix-glpi-integration-v0.1.md, event-ci-mapping-v0.1.md, integration-state-model-v0.1.md, integration-security-v0.1.md under docs/architecture; docs/testing/phase3-test-matrix.md; docs/roadmap.md.
+
+Unresolved operator actions: default-host correction decision; approve immutable identities/pilot/root-entity scope and impact/matrix; custom profile/user/OAuth grant/client configuration; later authorized positive marker/follow-up/write rights and lifecycle-contract tests. No automatic commit while these decisions remain unresolved. Implementation requires a separate dry-run request after preparation review; automatic writes remain disabled.
