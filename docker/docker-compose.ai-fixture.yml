@@ -1,0 +1,6 @@
+# Only deterministic automated/browser validation. Never an undisclosed LLM fallback.
+services:
+  ai-assistant:
+    environment:
+      AI_PROVIDER: fixture
+      AI_FIXTURE_ENABLED: 'true'

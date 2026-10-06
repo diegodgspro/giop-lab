@@ -26,6 +26,13 @@
     </div>
   </div>
   <section id="detail-content" class="panel" hidden><div class="panel-heading"><div><div class="eyebrow">READ-ONLY · SYNTHETIC LAB</div><h2 id="detail-heading"></h2></div><span class="subtle-tag">API DATA</span></div><div id="detail-body"></div></section>
+  {% if page in ['overview', 'incidents', 'events'] %}
+  <section id="ai-panel" class="panel ai-panel" aria-label="AI Incident Analysis">
+    <div class="panel-heading"><div><div class="eyebrow">EVIDENCE → REASONING → RECOMMENDATION → HUMAN DECISION</div><h2>AI Incident Analysis</h2></div><span class="subtle-tag">READ ONLY</span></div>
+    <div class="ai-controls"><div><span class="lab-pill">SYNTHETIC LAB</span><span class="ai-assistance">AI-assisted analysis</span></div><div><label for="ai-ticket">Incident</label><select id="ai-ticket" aria-label="Incident to analyze"></select><button id="ai-analyze" type="button" disabled>Analyze incident</button></div></div>
+    <div id="ai-result" class="ai-result" aria-live="polite"><p class="ai-placeholder">Optional read-only assistance. Analysis runs only when requested; normal dashboard refresh never invokes the model.</p></div>
+  </section>
+  {% endif %}
   {% if page == 'runbooks' %}
   <section class="panel runbooks-panel" aria-label="Operational runbook catalog">
     <div class="panel-heading"><div><div class="eyebrow">DIAGNOSE · APPROVE · RECOVER · VALIDATE</div><h2>Controlled operational response</h2></div><span class="subtle-tag">OPERATOR LOCAL</span></div>

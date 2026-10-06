@@ -5,9 +5,14 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel, ConfigDict, Field
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from .sources import Sources, stamp
+from .ai_context import build_context
+from .ai_client import AIClient
 
 logging.getLogger('httpx').setLevel(logging.WARNING)
 ROOT = Path(__file__).parent
@@ -97,11 +102,16 @@ def derive(data):
             'latest_episode': latest}
 
 
-def create_app(sources=None, ttl=15):
+def create_app(sources=None, ttl=15, ai_client=None, evidence_dir=None):
     app = FastAPI(title='GIOP N3 Control Center', docs_url=None, redoc_url=None)
     aggregation = Aggregator(sources, ttl)
+    assistant = ai_client or AIClient()
     templates = Jinja2Templates(directory=str(ROOT / 'templates'))
     app.mount('/static', StaticFiles(directory=str(ROOT / 'static')), name='static')
+
+    @app.exception_handler(RequestValidationError)
+    async def invalid_analysis_request(request, exc):
+        return JSONResponse(status_code=422, content={'status': 'AI_CONTEXT_INVALID'})
 
     @app.middleware('http')
     async def security_headers(request, call_next):
@@ -135,6 +145,21 @@ def create_app(sources=None, ttl=15):
     def events():
         d = aggregation.snapshot()
         return {'updated_at': d['updated_at'], 'synthetic': True, **d['integration']}
+
+    class AnalysisRequest(BaseModel):
+        model_config = ConfigDict(extra='forbid')
+        ticket_id: int = Field(gt=0, strict=True)
+
+    @app.post('/api/ai/analyze')
+    def analyze_incident(request: AnalysisRequest):
+        try:
+            context = build_context(aggregation.snapshot(), request.ticket_id, evidence_dir)
+        except Exception:
+            return {'status': 'INSUFFICIENT_EVIDENCE'}
+        try:
+            return assistant.analyze(context)
+        except Exception:
+            return {'status': 'AI_UNAVAILABLE'}
 
     @app.get('/')
     @app.get('/infrastructure')

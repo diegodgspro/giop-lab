@@ -6,6 +6,7 @@ PHASE 1: COMPLETE. PHASE 2: COMPLETE. PHASE 3: AUTOMATIC LIVE MVP VALIDATED (v0.
 
 PHASE 4: N3 CONTROL CENTER FROZEN AT `giop-lab-v0.4.0` (`42e3cba`).
 PHASE 5: OPERATIONAL RUNBOOKS MVP COMPLETE AND LOCALLY VALIDATED; `giop-lab-v0.5.0`.
+PHASE 6: READ-ONLY AI INCIDENT ANALYSIS MVP; local release `giop-lab-v0.6.0`.
 
 | Portfolio progression | Capability | State |
 | --- | --- | --- |
@@ -14,6 +15,30 @@ PHASE 5: OPERATIONAL RUNBOOKS MVP COMPLETE AND LOCALLY VALIDATED; `giop-lab-v0.5
 | v0.3 Event-to-Incident Automation | Persistent Zabbix → GLPI correlation and human validation | Frozen: giop-lab-v0.3.0 |
 | v0.4 N3 Control Center | Read-only operations dashboard using current LAB APIs | Frozen: giop-lab-v0.4.0 |
 | v0.5 Operational Runbooks | Diagnose, collect evidence, approve fixed LAB recovery, validate and audit | Local release: giop-lab-v0.5.0 |
+| v0.6 AI-assisted incident analysis | Evidence, inference, known runbook recommendation and human decision; read only | Local release: giop-lab-v0.6.0 |
+
+## Phase 6 — AI-assisted incident analysis
+
+Evidence → reasoning → recommendation → human decision. Optional Python/FastAPI
+assistance analyzes bounded sanitized incident context through a provider abstraction.
+The explicit fixture supports deterministic tests/UI. Real inference subsequently passed
+with operator-installed Ollama 0.35.1 / llama3.2:3b. The assistant installed/downloaded nothing.
+The Control Center invokes analysis only on an operator click and shows observed,
+inferred and unknown information, confidence, known runbook risk and approval required.
+AI never executes commands/runbooks or modifies infrastructure. All data is synthetic.
+
+See [operator demo and commands](docs/demo/phase6-ai-incident-analysis.md) and
+[architecture and trust boundary](docs/architecture/ai-incident-analysis-v0.1.md).
+Historical demo: Problem 41 → Ticket 97 → Recovery 42 → Follow-up 4, now Healthy.
+
+
+Structured validity does not guarantee diagnostic correctness. Real llama3.2:3b
+inference passed strict schema validation without output repair, but was not fully
+operationally accurate: historical workload state was supplied and partly reported
+as UNKNOWN. It recommended RB-OPS-001 (Service Health Check), not RB-OPS-003.
+Model confidence values (40% overall, 60% inferred cause) are not calibrated
+probabilities. AI output is advisory; operator review and human decision remain
+authoritative. One injection-oriented check is not a general security guarantee.
 
 ## Phase 5 — Operational Runbooks
 

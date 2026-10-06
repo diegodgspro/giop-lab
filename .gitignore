@@ -7,6 +7,8 @@ __pycache__/
 .pytest_cache/
 integration/.venv/
 control-center/.venv/
+ai-assistant/.venv/
+artifacts/ai-assistant/
 artifacts/control-center/
 artifacts/runbooks/
 data/integration/

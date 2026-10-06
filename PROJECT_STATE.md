@@ -1,6 +1,39 @@
 # Project State - GIOP-LAB
 
-## Phase status
+## Current Phase 6 state
+
+Read-only AI analysis MVP on `phase/6-ai-incident-analysis`, from
+`giop-lab-v0.5.0` / `385ef17cca4abdbd38e3e3aa24bcbfef2c12ff3a`.
+Phase 6 finalized with local commit and annotated tag `giop-lab-v0.6.0`; no push.
+Previous tags, Integration, runbooks and aggregation unchanged.
+FastAPI AI Assistant receives sanitized bounded context from Control Center only.
+Fixture remains deterministic for tests and is not a language model. The active
+provider is now Ollama 0.35.1 / llama3.2:3b, installed by the operator. Real historical
+analysis and one bounded injection check passed the strict advisory contract.
+No host installation/configuration or new outage was performed.
+
+Historical Problem 41 / Ticket 97 / Recovery 42 / Follow-up 4 is analyzed using
+operator-projected RB-OPS-002 evidence. Historical degraded facts are separate from
+current Healthy state. Counts remain 128 active Computers / 51 NetworkEquipment / 97
+Tickets, all SYNTHETIC LAB. AI recommends known runbooks but cannot execute them.
+Observed/inferred/unknown labels, confidence, risk and approval are visible.
+
+Validation: 21 AI, 27 Control Center, 6 Phase 3 and 17 Phase 5 cases; browser/API
+checks and desktop/mobile screenshots; credential/runtime/whitespace review.
+AI outage does not prevent normal Control Center operation. Details and limitations:
+[Phase 6 demo](docs/demo/phase6-ai-incident-analysis.md) and
+[architecture](docs/architecture/ai-incident-analysis-v0.1.md).
+
+
+Structured validity does not guarantee diagnostic correctness. Real llama3.2:3b
+inference passed strict schema validation without output repair, but was not fully
+operationally accurate: historical workload state was supplied and partly reported
+as UNKNOWN. It recommended RB-OPS-001 (Service Health Check), not RB-OPS-003.
+Model confidence values (40% overall, 60% inferred cause) are not calibrated
+probabilities. AI output is advisory; operator review and human decision remain
+authoritative. One injection-oriented check is not a general security guarantee.
+
+## Historical Phase 5 status
 
 PHASE 5: OPERATIONAL RUNBOOKS MVP COMPLETE AND LOCALLY VALIDATED; LOCAL RELEASE giop-lab-v0.5.0; NO PUSH.
 
@@ -46,8 +79,7 @@ Validation: 17 offline runbook cases; 20 Control Center tests (including all exi
 Phase 4 cases); six unchanged Phase 3 tests. Live apply/end-to-end evidence above.
 Browser desktop/mobile/API and secret/whitespace review are recorded in the Phase 5 demo.
 Finalization: `feat(runbooks): add controlled N3 operational response workflow`;
-annotated local tag `giop-lab-v0.5.0`. Runtime evidence remains excluded. No push or
-Phase 6. Details: docs/demo/phase5-operational-runbooks.md.
+annotated local tag `giop-lab-v0.5.0`. Runtime evidence remains excluded. No push was performed at Phase 5 finalization. Details: docs/demo/phase5-operational-runbooks.md.
 
 ## Historical Phase 4 implementation and evidence (2026-10-05 local / 2026-10-06 UTC)
 

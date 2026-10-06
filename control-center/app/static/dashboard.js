@@ -35,6 +35,14 @@ if(page==='runbooks'){
 
 function render(d){
   const z=d.zabbix,g=d.glpi,i=d.integration,infra=d.synthetic_infrastructure,m=d.episode_metrics;
+  if(el('ai-ticket')){
+    const selected=el('ai-ticket').value;
+    const tickets=(d.incidents??[]).filter(t=>t.episode?.mode==='live');
+    el('ai-ticket').innerHTML=tickets.map(t=>`<option value="${escape(t.id)}">#${escape(t.id)} · Event ${escape(t.episode.event_id)}</option>`).join('');
+    if(tickets.some(t=>String(t.id)===selected))el('ai-ticket').value=selected;
+    else if(tickets.some(t=>t.id===d.latest_episode?.glpi_ticket_id))el('ai-ticket').value=String(d.latest_episode.glpi_ticket_id);
+    el('ai-analyze').disabled=!tickets.length||aiBusy;
+  }
   el('status-strip').innerHTML=[['Zabbix',z,'Observability API'],['GLPI',g,'ITSM / CMDB API'],['GIOP Integration',i,i.mode?`Mode: ${i.mode}`:'Correlation API'],['Synthetic Infrastructure',infra,'Pilot trigger status']].map(([name,source,description])=>`<div class="source-status ${escape(source.status)}"><span class="status-dot"></span><div><strong>${escape(name)}</strong><small>${escape(description)}</small></div>${badge(source.status)}</div>`).join('');
   el('updated').textContent='Last updated: '+date(d.updated_at);
   if(page==='overview'){
@@ -71,6 +79,41 @@ function render(d){
     const episodes=i.episodes;
     el('detail-body').innerHTML=`<p class="table-note">${escape(i.scope??'Integration read unavailable')} · Duplicate suppression counters are not exposed by the source API.</p>`+(episodes==null?empty('Integration episodes unavailable.'):episodes.length?table(['Problem / Recovery','Host / trigger','GLPI Ticket','State / mode','Problem time','Recovery time'],episodes.map(e=>[`${escape(e.event_id)} / ${escape(e.recovery_event_id??'Pending')}`,`${escape(e.host_id)} / ${escape(e.trigger_id)}`,escape(e.glpi_ticket_id??'Unconfirmed'),`${escape(e.status)}<br><small>${escape(e.mode)}</small>`,escape(date(e.problem_time)),escape(e.recovery_time?date(e.recovery_time):'Not recorded')])):empty('No persisted episodes returned.'));
   }
+}
+let aiBusy=false;
+if(el('ai-analyze')){
+  el('ai-ticket').addEventListener('change',()=>{el('ai-result').innerHTML='<p class="ai-placeholder">Incident selection changed. Request an analysis for this incident; previous recommendations are not carried over.</p>';});
+  el('ai-analyze').addEventListener('click',async()=>{
+    if(aiBusy||!el('ai-ticket').value)return;
+    aiBusy=true;el('ai-analyze').disabled=true;el('ai-ticket').disabled=true;
+    const ticketId=Number(el('ai-ticket').value);
+    el('ai-result').innerHTML='<p class="ai-placeholder">Reviewing bounded evidence… No infrastructure action is possible.</p>';
+    try{
+      const response=await fetch('/api/ai/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ticket_id:ticketId})});
+      if(!response.ok)throw Error('Analysis unavailable');
+      showAnalysis(await response.json());
+    }catch{showAnalysis({status:'AI_UNAVAILABLE'});}
+    finally{aiBusy=false;el('ai-analyze').disabled=false;el('ai-ticket').disabled=false;}
+  });
+}
+function showAnalysis(result){
+  const messages={AI_UNAVAILABLE:['Unavailable','AI assistance is unavailable. Monitoring, Incident correlation and operator runbooks remain available.'],AI_ANALYSIS_INVALID:['AI analysis invalid','The provider output did not meet the advisory contract. No result has been fabricated.'],INSUFFICIENT_EVIDENCE:['Insufficient evidence','Approved correlated incident evidence is insufficient. Review diagnostics and source visibility.'],AI_CONTEXT_INVALID:['Context invalid','The supplied context could not be accepted. Review bounded diagnostics.']};
+  if(result.status!=='SUCCESS'){
+    const [title,detail]=messages[result.status]??messages.AI_UNAVAILABLE;
+    el('ai-result').innerHTML=`<div class="ai-unavailable"><strong>${escape(title)}</strong><p>${escape(detail)}</p></div>`;return;
+  }
+  const a=result.analysis, percent=value=>Math.round(value*100)+'%', names={'RB-OPS-001':'Service Health Check','RB-OPS-002':'Collect Incident Diagnostics','RB-OPS-003':'Controlled LAB Recovery'};
+  el('ai-result').innerHTML=`${result.fixture?'<div class="ai-fixture">FIXTURE PROVIDER · Deterministic validation output — not a language model</div>':''}
+    <div class="ai-incident"><div><span class="eyebrow">INCIDENT #${escape(result.incident_id)}</span><strong>${escape(readableState(result.episode_state))}</strong></div><div><span class="ai-confidence">${escape(percent(a.overall_confidence))}</span><small>Inference confidence · not a calibrated probability</small></div></div>
+    <p class="ai-summary">${escape(a.summary)}</p>
+    <p class="ai-provenance">Affected service: ${escape(a.affected_service)} · Logical CI: Computer ${escape(result.ci.computer_id)} · ${identifier(result.ci.ci_uid)}</p>
+    <div class="ai-grid"><div><h3 class="ai-label">OBSERVED</h3><ul class="ai-observed">${result.observed.map(f=>`<li><span aria-hidden="true">✓</span><div>${escape(f.statement)}<small>${escape(f.source)} · ${escape(f.window)}${f.observed_at?' · '+escape(date(f.observed_at)):''}</small></div></li>`).join('')}</ul></div>
+    <div><h3 class="ai-label inferred">INFERRED · PROBABLE CAUSES</h3>${a.probable_causes.map(c=>`<div class="ai-cause"><strong>${escape(c.cause)}</strong><p>Confidence: ${escape(percent(c.confidence))}</p><small>Evidence: ${escape(c.evidence.join(', '))}</small></div>`).join('')}
+    <h3 class="ai-label unknown">UNKNOWN · MISSING INFORMATION</h3><ul>${a.missing_information.map(value=>`<li>${escape(value)}</li>`).join('')}</ul></div></div>
+    <div class="ai-grid ai-next"><div><h3 class="ai-label">RECOMMENDED CHECKS</h3><ol>${a.recommended_checks.map(value=>`<li>${escape(value)}</li>`).join('')}</ol></div>
+    <div class="ai-runbook"><h3 class="ai-label">SUGGESTED RUNBOOK</h3><strong>${escape(a.recommended_runbook.id)} · ${escape(names[a.recommended_runbook.id])}</strong><p>${escape(a.recommended_runbook.reason)}</p><span class="ai-risk">Risk: ${escape(a.recommended_runbook.risk)} · synthetic target only</span></div></div>
+    <div class="ai-approval"><strong>Operator approval required</strong><p>${escape(a.operator_notes)}</p><a href="/runbooks">Review operational runbook governance →</a></div>
+    <p class="ai-provenance">Provider: ${escape(result.provider)} · ${escape(result.model)} · ${result.cached?'Cached context analysis':'Explicitly requested analysis'}${result.diagnostics_execution?' · Diagnostics '+escape(result.diagnostics_execution):' · Historical workload diagnostics unavailable'}</p>`;
 }
 let busy=false;
 async function refresh(){

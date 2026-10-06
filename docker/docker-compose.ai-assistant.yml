@@ -1,0 +1,30 @@
+# Optional Phase 6 overlay; AI has only the private analysis network and no credentials.
+services:
+  control-center:
+    environment:
+      CC_AI_URL: http://ai-assistant:8092
+      CC_AI_EVIDENCE_DIR: /evidence
+    volumes:
+      - ../artifacts/ai-assistant/evidence:/evidence:ro
+    networks: [ai-analysis]
+  ai-assistant:
+    build: ../ai-assistant
+    restart: unless-stopped
+    environment:
+      AI_PROVIDER: ${AI_PROVIDER:-ollama}
+      OLLAMA_URL: ${OLLAMA_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-}
+    networks: [ai-analysis]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    read_only: true
+    tmpfs: [/tmp]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8092/health',timeout=3)"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+networks:
+  ai-analysis:
+    name: giop-lab-ai-analysis
+    driver: bridge
