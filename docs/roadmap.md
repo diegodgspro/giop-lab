@@ -1,5 +1,14 @@
 # GIOP-LAB roadmap
 
+## Public portfolio v1.0 preparation
+
+Prepared on `release/1.0-public-portfolio` from giop-lab-v0.6.0; not a new runtime
+feature phase. The public README, curated SYNTHETIC LAB captures, architecture,
+staged setup and demo surface the validated engineering progression below.
+Final preparation includes a release commit and local annotated `giop-lab-v1.0.0`
+tag; no push or publication. Prior tags/evidence remain intact.
+The owner selected the [MIT License](../LICENSE). See [release notes](release/v1.0-release-notes.md).
+
 All LAB data is synthetic. Source-document municipal context is separate from the
 demonstration environment and is not a dashboard data source.
 

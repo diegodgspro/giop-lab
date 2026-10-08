@@ -1,5 +1,25 @@
 # Project State - GIOP-LAB
 
+## Public portfolio release preparation
+
+Branch `release/1.0-public-portfolio` starts at `giop-lab-v0.6.0` /
+`0f9186c9082aa16472d2d086cc49950e6d20e09f`. v1.0 preparation changes public
+presentation, documentation/assets and review tooling only. No runtime feature,
+outage or history rewrite is performed. Final preparation includes one release commit
+and the local annotated `giop-lab-v1.0.0` tag; no push or publication.
+Previous phase entries below remain historical engineering evidence.
+
+Public README, four reviewed SYNTHETIC LAB captures, architecture/ownership overview,
+staged setup, 5–8 minute demo, portfolio text and GitHub/release metadata are
+prepared. Runtime evidence remains ignored. The owner selected the MIT License,
+provided in LICENSE. SECURITY.md is concise.
+
+The real AI limitation is preserved: Ollama 0.35.1 / llama3.2:3b passed structured
+validation but partly marked supplied workload-state evidence UNKNOWN and selected
+RB-OPS-001. Confidence is not calibrated and human decision remains authoritative.
+See [public review](docs/release/public-safety-review.md),
+[setup](docs/setup/quick-start.md) and [release notes](docs/release/v1.0-release-notes.md).
+
 ## Current Phase 6 state
 
 Read-only AI analysis MVP on `phase/6-ai-incident-analysis`, from

@@ -1,195 +1,193 @@
-# GIOP-LAB
+# GIOP
 
-Local synthetic Infrastructure Operations laboratory. No real municipal operational dataset is represented by the synthetic LAB. The actual physical municipal site count remains TO VALIDATE.
+**Guaratinguetá Infrastructure Operations Platform — LAB**
 
-PHASE 1: COMPLETE. PHASE 2: COMPLETE. PHASE 3: AUTOMATIC LIVE MVP VALIDATED (v0.3.0).
+A synthetic infrastructure-operations platform connecting observability, ITSM/CMDB,
+event correlation, an N3 Control Center, controlled runbooks and read-only AI analysis.
 
-PHASE 4: N3 CONTROL CENTER FROZEN AT `giop-lab-v0.4.0` (`42e3cba`).
-PHASE 5: OPERATIONAL RUNBOOKS MVP COMPLETE AND LOCALLY VALIDATED; `giop-lab-v0.5.0`.
-PHASE 6: READ-ONLY AI INCIDENT ANALYSIS MVP; local release `giop-lab-v0.6.0`.
+**This repository is a synthetic laboratory / portfolio implementation. It does not
+represent the live municipal production environment.** All demonstrated assets,
+incidents and operational records are **SYNTHETIC LAB** data.
 
-| Portfolio progression | Capability | State |
-| --- | --- | --- |
-| v0.1 Observability | Zabbix detects synthetic workload outage / Recovery | Complete |
-| v0.2 ITSM / CMDB | GLPI synthetic inventory and Incident lifecycle | Complete |
-| v0.3 Event-to-Incident Automation | Persistent Zabbix → GLPI correlation and human validation | Frozen: giop-lab-v0.3.0 |
-| v0.4 N3 Control Center | Read-only operations dashboard using current LAB APIs | Frozen: giop-lab-v0.4.0 |
-| v0.5 Operational Runbooks | Diagnose, collect evidence, approve fixed LAB recovery, validate and audit | Local release: giop-lab-v0.5.0 |
-| v0.6 AI-assisted incident analysis | Evidence, inference, known runbook recommendation and human decision; read only | Local release: giop-lab-v0.6.0 |
+![N3 Control Center showing healthy synthetic services and a recovered incident](docs/assets/control-center-overview.png)
 
-## Phase 6 — AI-assisted incident analysis
+## What problem does it solve?
 
-Evidence → reasoning → recommendation → human decision. Optional Python/FastAPI
-assistance analyzes bounded sanitized incident context through a provider abstraction.
-The explicit fixture supports deterministic tests/UI. Real inference subsequently passed
-with operator-installed Ollama 0.35.1 / llama3.2:3b. The assistant installed/downloaded nothing.
-The Control Center invokes analysis only on an operator click and shows observed,
-inferred and unknown information, confidence, known runbook risk and approval required.
-AI never executes commands/runbooks or modifies infrastructure. All data is synthetic.
+Monitoring, ticketing, inventory and operational response frequently exist as
+disconnected tools. GIOP demonstrates a governed workflow connecting them through
+a correlated Incident, operator diagnosis, approved recovery and evidence.
+Monitoring alone is not operations; AI assistance is not operational authority.
 
-See [operator demo and commands](docs/demo/phase6-ai-incident-analysis.md) and
-[architecture and trust boundary](docs/architecture/ai-incident-analysis-v0.1.md).
-Historical demo: Problem 41 → Ticket 97 → Recovery 42 → Follow-up 4, now Healthy.
+## End-to-End Workflow
 
+Monitor → Detect → Correlate → Incident → Visualize → Diagnose → **Approve**
+→ Recover → Validate → AI-assisted analysis.
 
-Structured validity does not guarantee diagnostic correctness. Real llama3.2:3b
-inference passed strict schema validation without output repair, but was not fully
-operationally accurate: historical workload state was supplied and partly reported
-as UNKNOWN. It recommended RB-OPS-001 (Service Health Check), not RB-OPS-003.
-Model confidence values (40% overall, 60% inferred cause) are not calibrated
-probabilities. AI output is advisory; operator review and human decision remain
-authoritative. One injection-oriented check is not a general security guarantee.
+Recovery adds a GLPI follow-up. It does **not** automatically close the Ticket.
 
-## Phase 5 — Operational Runbooks
-
-Monitoring alone is not operations. Three operator-local PowerShell runbooks add
-service checks, sanitized incident diagnostics and explicitly approved recovery of
-only the synthetic `web-workload`. Recovery defaults to a plan; `-Execute` is
-required. Zabbix → Integration → GLPI remains responsible for Incident/Recovery
-evidence, with human validation before closure. No autonomous remediation or
-production readiness is claimed.
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/runbooks/Invoke-GiopServiceHealthCheck.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/runbooks/Collect-GiopIncidentDiagnostics.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/runbooks/Invoke-GiopControlledRecovery.ps1
-```
-
-The last command is **dry-run only**. Review local `artifacts/runbooks/<execution-id>/`
-before approving an action. Control Center's [Operational Runbooks](http://localhost:8091/runbooks)
-catalog is read only, with no browser Execute button. See the
-[Phase 5 demo, apply command and limitations](docs/demo/phase5-operational-runbooks.md).
-
-## Phase 4 — GIOP N3 Control Center
-
-A dark operations dashboard makes the complete LAB workflow visible: source health,
-current pilot Problem state, infrastructure inventory, event timeline and persistent
-Zabbix-to-GLPI Incident correlation. Values come from current LAB APIs;
-**SYNTHETIC LAB** labels distinguish the demonstration from municipal production.
-
-One additional stateless service uses Python, FastAPI, Jinja2, HTML/CSS and vanilla
-JavaScript. Credentials stay server-side. It performs read-only aggregation;
-the existing Integration remains the owner of event persistence and GLPI writes.
+## Architecture
 
 ```mermaid
 flowchart TB
-    O[N3 Operator] --> C[GIOP Control Center / localhost:8091]
-    C -->|read API| Z[Zabbix frontend]
-    C -->|read API / episodes| I[GIOP Integration]
-    C -->|read API| G[GLPI frontend]
+    subgraph LAB["SYNTHETIC LAB"]
+        W["Synthetic web workload"] -->|TCP monitoring| Z["Zabbix · observability"]
+        Z -->|Problem / Recovery webhook| I["GIOP Integration · correlation / deduplication"]
+        I -->|episode persistence| S[("SQLite · single-instance state")]
+        I -->|controlled API writes| G["GLPI · ITSM / CMDB"]
+        Z -.->|API reads| C["N3 Control Center"]
+        I -.->|episode reads| C
+        G -.->|API reads| C
+        C -.->|read-only catalog| R["Operator-local PowerShell runbooks"]
+        C -->|explicit analysis / sanitized context| A["AI Assistant · advisory only"]
+        A -->|structured inference| M["Local Ollama"]
+        A -.->|validated recommendation| C
+        T["Same synthetic workload · fixed target"]
+    end
+    O["Human operator · decision authority"] -->|review evidence| C
+    O -->|explicit local invocation / -Execute| R
+    R -->|only RB-OPS-003 can restore| T
 ```
 
-With the base LAB and Phase 3 Integration running and `.env` configured:
+Solid arrows show data flow or the labeled constrained write path; dotted arrows
+show reads/presentation. The runbook catalog cannot invoke scripts. AI has no path
+to infrastructure actions. Integration uses application APIs, never direct Zabbix or
+GLPI database access. [Architecture and decisions](docs/architecture/public-overview.md).
+
+## Key Capabilities
+
+- Zabbix Problem/Recovery detection for one synthetic web-service pilot.
+- GLPI synthetic inventory and Incident/Recovery evidence.
+- Persistent correlation and duplicate suppression using SQLite.
+- Responsive, read-only N3 dashboard with source health and incident timelines.
+- **RB-OPS-001:** Service Health Check; **RB-OPS-002:** Incident Diagnostics.
+- **RB-OPS-003:** Controlled LAB Recovery, dry-run by default; explicit `-Execute`
+  targets only the fixed synthetic `web-workload`. No generic command executor.
+- Optional AI: sanitized context, strict schema, OBSERVED / INFERRED / UNKNOWN,
+  known-runbook recommendations and mandatory operator review.
+
+## Version Journey
+
+| Tag | Engineering progression |
+| --- | --- |
+| `giop-lab-v0.1.0` | Observability |
+| `giop-lab-v0.2.0` | ITSM / CMDB / Inventory |
+| `giop-lab-v0.3.0` | Event-to-Incident Automation |
+| `giop-lab-v0.4.0` | N3 Control Center |
+| `giop-lab-v0.5.0` | Controlled Operational Runbooks |
+| `giop-lab-v0.6.0` | AI-assisted Incident Analysis |
+
+v1.0 is public presentation/release preparation of this validated baseline, not a
+new runtime feature phase. Previous tags and [historical evidence](PROJECT_STATE.md)
+remain intact. [Roadmap](docs/roadmap.md).
+
+## Demonstrated Scenario
+
+An operator deliberately stops the synthetic web workload. Zabbix detects a Problem;
+Integration creates a GLPI Incident; Control Center shows the correlation. Read-only
+runbooks assess health and collect evidence. The operator reviews a plan, explicitly
+approves recovery, and validates Recovery and the GLPI follow-up.
+
+Historical example: **Problem 41 → Ticket 97 → Recovery 42 → Follow-up 4 → Healthy**.
+IDs are instance-specific, not constants for a new demo. The observed inventory was
+128 active Computers, 51 NetworkEquipment and 97 visible Tickets, all synthetic.
+
+Real inference passed with **Ollama 0.35.1 / `llama3.2:3b`**. Its schema-valid response
+incorrectly treated supplied historical workload state as partly UNKNOWN and recommended
+**RB-OPS-001**, not recovery. **Structured validity does not guarantee diagnostic
+correctness.** Confidence is model output, not a calibrated probability. The fixture
+provider is deterministic test support, **not an LLM**.
+[AI trust boundary and real-model limitations](docs/architecture/ai-incident-analysis-v0.1.md).
+
+## Screenshots
+
+Selected local SYNTHETIC LAB captures; runtime directories remain unpublished.
+
+| View | What it demonstrates |
+| --- | --- |
+| [Overview](docs/assets/control-center-overview.png) | Source health, inventory and pilot state |
+| [Incident correlation](docs/assets/incident-correlation.png) | Problem, CI, Incident, Recovery and operator validation |
+| [Operational runbooks](docs/assets/operational-runbooks.png) | Read-only governance catalog, no browser execution |
+| [Real Ollama analysis](docs/assets/ai-analysis-ollama.png) | Evidence, inference, unknowns, model and approval |
+
+![Real Ollama advisory output showing operator approval](docs/assets/ai-analysis-ollama.png)
+
+## Technology Stack
+
+Zabbix 7 · GLPI 11 · Python/FastAPI · SQLite · PowerShell · Docker Compose ·
+Jinja2 / HTML / CSS / vanilla JavaScript · optional local Ollama.
+No agent framework, RAG, vector database or autonomous remediation.
+
+## Safety / Governance
+
+Recovery requires a human invoking a fixed-target local runbook. AI never executes
+scripts, calls recovery, modifies Tickets/CMDB or receives infrastructure credentials.
+Application containers have no Docker socket or privileged mode. Secrets stay in
+ignored local environment files; runtime records, databases, logs and model files
+stay outside public source. One real injection check passed, without providing a
+general security guarantee. [Security policy](SECURITY.md) ·
+[Publication review](docs/release/public-safety-review.md).
+
+## Quick Start
+
+Prerequisites: Docker Desktop with Linux containers, Windows PowerShell, Git;
+Python 3.13 for local tests/diagnostic projection. Ollama is optional.
 
 ```powershell
-docker compose --env-file .env -f docker/docker-compose.control-center.yml up -d --build
+Copy-Item .env.example .env
+# Configure local secrets and identities; replace every CHANGE_ME before starting.
+./scripts/lab-up.ps1
 ```
 
-Open [localhost:8091](http://localhost:8091). Pages: Overview, Infrastructure,
-Incidents and Event correlation. Data refreshes every 20 seconds without a page
-reload. Source failures display Unavailable rather than invented zero counts.
-Counts/listing windows have scope labels; no lifetime deduplication counter is claimed.
-See the [Phase 4 demo and limitations](docs/demo/phase4-control-center.md).
+This starts the core LAB, **not** the full demo. GLPI initialization, OAuth identities,
+synthetic seed, fixed pilot read-back and Zabbix delivery require operator setup.
+Follow the [staged setup guide](docs/setup/quick-start.md) before starting Integration,
+Control Center or AI. Fresh instances may allocate different IDs; ambiguity fails closed.
 
-The container joins only existing Zabbix frontend, GLPI frontend and Integration
-webhook application networks, binds `127.0.0.1:8091`, and has no persistent volume,
-database network/access or Docker socket. This is a local portfolio MVP.
+| Component | Default local endpoint |
+| --- | --- |
+| Zabbix | http://localhost:8080 |
+| GLPI | http://localhost:8081 |
+| Integration health | http://localhost:8090/health |
+| N3 Control Center | http://localhost:8091 |
 
-Phase 1 provides Zabbix observability of a controlled Nginx workload. The operator validated the 2026-10-02 outage from 19:42:31 to 19:44:26 local time (1m55s), final problem RESOLVED and smoke result `lab.web.status [s|1]`: PASS.
+## Testing
 
-Phase 2 provides GLPI 11.0.9 ITSM/CMDB with MySQL persistence. Validated seed: 41 Locations, 127 Computers, 51 NetworkEquipment and 93 Tickets. Separate GLPI Agent 1.20 inventory discovered `GUA-LAB-INVENTORY-001`, Computer ID 182. 127 seeded + 1 discovered = 128 conceptual LAB Computers. The endpoint remained ID 182 after `lab-down` / `lab-up`: persistence PASS.
+Latest regression: **71 tests** — 21 AI, 27 Control Center, 6 Integration (Phase 3),
+17 runbook (Phase 5). Fixture tests need no Ollama; mocked runbook tests cause no
+outages. Historical live validation verified automatic Incidents, deduplication,
+persistence, controlled recovery and follow-up. Real Ollama structured inference and
+desktop/mobile browser checks passed. This is LAB verification, not production
+certification. [Commands and scope](docs/testing/public-validation.md).
 
-## Local operation
+## Repository Structure
 
-1. Copy `.env.example` to `.env` and replace every `CHANGE_ME` value with a strong local secret. Keep `.env` ignored.
-2. Run `./scripts/lab-up.ps1`.
-3. Open Zabbix at http://localhost:8080 (Admin with local `ZABBIX_ADMIN_PASSWORD`) and GLPI at http://localhost:8081 with locally configured credentials.
-4. Run `./scripts/lab-smoke-test.ps1` and `./scripts/glpi-smoke-test.ps1` when runtime checks are needed.
+| Directory | Responsibility |
+| --- | --- |
+| `integration/` | Translation, correlation, persistence and GLPI API writes |
+| `control-center/` | Read-only aggregation and operations UI |
+| `ai-assistant/` | Bounded contract, providers and advisory validation |
+| `scripts/runbooks/` | Operator-facing health, diagnostics and recovery |
+| `docker/` | Core stack and optional overlays |
+| `docs/architecture/`, `docs/runbooks/` | Decisions, boundaries and procedures |
+| `docs/demo/`, `docs/portfolio/` | Demonstrations and project summaries |
+| `tests/` | Runbook, provisioning and public-release checks |
 
-If execution policy blocks invocation, use a process-only bypass: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/lab-up.ps1`.
+## Known Limitations
 
-`lab-status.ps1`, `glpi-status.ps1` and `lab-logs.ps1 [service]` inspect services. `lab-down.ps1` stops the base stack while retaining volumes. The inventory job has its own Compose file and exits after submission.
+One synthetic pilot, LAB-only topology, local Docker/PowerShell and non-HA state.
+CI relationships are logical mappings. Fixed API identities limit fresh-instance
+portability. AI quality depends on the model; semantic and injection evaluation is
+limited. Production authentication, TLS, egress controls, least-privilege audit and
+write-outcome reconciliation need more work. No autonomous remediation is offered.
+Municipal production topology and operational records are outside this LAB.
 
-For API scripts, configure local `.env` keys `GLPI_API_BASE_URL` (http://localhost:8081), `GLPI_API_USERNAME`, `GLPI_API_PASSWORD`, `GLPI_OAUTH_CLIENT_ID`, `GLPI_OAUTH_CLIENT_SECRET`. The validated API client uses scope `api`; token acquisition and API read returned HTTP 200. `IDENTITY_CONFIRMATION=REQUIRES_USER_SCOPE` is expected.
+## Roadmap
 
-For inventory, configure separate local `GLPI_INVENTORY_OAUTH_CLIENT_ID` and `GLPI_INVENTORY_OAUTH_CLIENT_SECRET` for OAuth Client Credentials, scope `inventory`. With the base stack running, invoke `docker compose --env-file .env -f docker/docker-compose.inventory.yml up --build --abort-on-container-exit --exit-code-from glpi-inventory-agent`, then read back using `scripts/glpi-agent-inventory-check.ps1`. Do not include credentials in commands, screenshots or committed logs.
+Public release preparation focuses on clear documentation and safe evidence.
+Future hardening in the [roadmap](docs/roadmap.md) is not an implemented production
+capability. [5–8 minute demo](docs/demo/v1-public-demo.md) ·
+[Portfolio summary](docs/portfolio/project-summary.md).
 
-## Scope and evidence
+## License
 
-Frontends bind only 127.0.0.1 ports 8080/8081; databases expose no host ports. Agent uses only `giop-lab-glpi-frontend`, with no direct database network, host port, privileged mode, host networking, socket or host filesystem mount.
-
-Entity creation was rejected; native Locations hold the synthetic topology. Ticket-to-CI mappings are logical manifest entries because the inspected High-Level API exposed no supported Ticket-Item association route. Historical timestamps were not manipulated. Container inventory has incomplete memory details and no native NetworkPort objects; no missing data is fabricated.
-
-The older `Zabbix server` problem `Linux: Zabbix agent is not available (for 3m)` is unrelated LAB configuration noise to review; no recovery is claimed.
-
-## Phase 3 — automated monitoring to ITSM
-
-```mermaid
-flowchart LR
-    Z[Zabbix] -->|Trigger Action / giop-alert.sh| I[GIOP Integration]
-    I -->|Incident / Recovery follow-up| G[GLPI]
-    I <--> S[(SQLite correlation state)]
-    G --> O[Human validation before closure]
-```
-
-The local pilot demonstrates **event-driven IT operations**, **automated incident
-creation**, **persistent correlation state**, **deduplication**, **Recovery
-correlation**, and **idempotent Zabbix provisioning**. Human validation precedes
-closure; the integration does not close tickets automatically.
-
-One FastAPI/Python container uses one worker and a persistent SQLite volume.
-Default mode is dry-run; the validated instance runs LIVE. Only host 10683 AND
-trigger 25228 maps to Computer 1/entity 0, distinct from inventory Computer 182.
-Integration binds localhost port 8090 and joins application networks only.
-
-Start with `docker compose --env-file .env -f docker/docker-compose.integration.yml up -d --build`
-after configuring dedicated credentials and the shared secret in ignored `.env`.
-Provision with `scripts/Enable-GiopZabbixDelivery.ps1`; `-WhatIf` provides read-only
-inspection. See the [MVP demo](docs/demo/phase3-mvp-demo.md) and
-[automatic delivery runbook](docs/demo/phase3-automatic-delivery.md).
-The internal endpoint is `http://integration:8090/api/v1/zabbix/events`.
-Phase 3A documents preserve future hardening proposals.
-
-## Validated automatic MVP evidence (2026-10-05)
-
-All LAB records are synthetic; these IDs are not municipal production data.
-Operator-confirmed Zabbix 7.0.31 and LIVE integration completed this architecture:
-
-Synthetic workload → Zabbix detection → Trigger Action → `giop-alert.sh` →
-FastAPI integration → SQLite persistence/deduplication → GLPI Incident →
-Zabbix Recovery → GLPI Follow-up → operator validation.
-
-The pilot is restricted to host **10683 AND trigger 25228**. Stopping the synthetic
-workload produced Zabbix pilot event **37**. The automatic Action delivered it,
-the integration persisted **PROBLEM_OPEN**, and GLPI automatically created
-**Ticket #95**, titled **GIOP-LAB Zabbix synthetic event 37**.
-After workload restoration, Zabbix detected Recovery and the correlated episode
-became **RECOVERED_PENDING_OPERATOR_VALIDATION**, with a GLPI Recovery follow-up.
-Neither `Send-GiopSyntheticProblem.ps1` nor `Send-GiopSyntheticRecovery.ps1` was
-used in this automatic demonstration. Automatic closure is intentionally disabled.
-The Recovery event ID and follow-up ID were not supplied; no values are invented.
-
-Automatic provisioning completed; the second run returned **UNCHANGED for all
-managed objects**, confirming operator-observed idempotency. Earlier operator LIVE
-checks confirmed duplicate Problem/Recovery suppression. Local mocked tests verify
-one ticket/one follow-up after duplicates and restart; these fixtures are separate
-from event 37 and Ticket 95.
-
-Zabbix displayed approximately UTC-3 while GLPI displayed UTC for the same event.
-This LAB presentation difference is non-blocking MVP technical debt.
-
-## Post-MVP technical debt
-
-These items do not block **v0.3.0**; this local pilot is not certified for production:
-
-- Complete API response reconciliation, including ambiguous write outcomes.
-- Exhaustive pagination hardening.
-- Native GLPI Ticket-CI relation (current mapping is logical/content/state only).
-- Full least-privilege audit.
-- TLS outside the local LAB.
-- HA.
-- Larger event-burst validation.
-- Timezone normalization.
-- Production Entity/topology mapping.
-
-See [project state](PROJECT_STATE.md), [v0.2 architecture](docs/architecture/lab-v0.2.md), [CMDB model](docs/architecture/cmdb-model-v0.1.md), [CI naming](docs/standards/ci-naming-standard.md), [outage runbook](docs/runbooks/RB-LAB-001-service-outage.md) and [GLPI runbook](docs/runbooks/RB-LAB-002-glpi-incident-lifecycle.md). Runtime evidence is operator-supplied; finalization CLI checks are static.
+Licensed under the [MIT License](LICENSE).
