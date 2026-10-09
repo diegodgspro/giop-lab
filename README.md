@@ -80,6 +80,9 @@ v1.0 is public presentation/release preparation of this validated baseline, not 
 new runtime feature phase. Previous tags and [historical evidence](PROJECT_STATE.md)
 remain intact. [Roadmap](docs/roadmap.md).
 
+Historical v0.x milestones are preserved in the repository history and project
+documentation; only the public v1.0.0 tag is published remotely.
+
 ## Demonstrated Scenario
 
 An operator deliberately stops the synthetic web workload. Zabbix detects a Problem;
